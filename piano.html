@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src=""></script>
+  <link href='piano.css' rel='stylesheet'>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.32/Tone.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/@magenta/music@1.0.0"></script>
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tonaljs/tonal/browser/tonal.min.js"></script>
+  <script src="https://unpkg.com/audiokeys"></script>
+
+  <script src='piano.js'></script>
+
+</head>
+
+<body>
+  dddd<div class="container">
+    <div class="machine-bg">
+      <div class="player"></div>
+      <div class="controls">
+        <div>
+          <div id="temperature" class="mdc-slider" tabindex="0" role="slider" aria-valuemin="0.2" aria-valuemax="2"
+            aria-valuenow="1.1" aria-label="Select temperature">
+            <div class="mdc-slider__track-container">
+              <div class="mdc-slider__track"></div>
+            </div>
+            <div class="mdc-slider__thumb-container">
+              <svg class="mdc-slider__thumb" width="21" height="21">
+                <circle cx="10.5" cy="10.5" r="7.875"></circle>
+              </svg>
+              <div class="mdc-slider__focus-ring"></div>
+            </div>
+          </div>
+          Temperature
+        </div>
+      </div>
+    </div>
+    <div class="human-bg">
+      <div class="player"></div>
+      <div class="controls">
+        <div class="midi-not-supported">
+          Play and hold a melody or chord using the
+          <a href="https://camo.githubusercontent.com/29529110d639ed79a04752c036fe301fd15c961b/68747470733a2f2f7261772e6769746875622e636f6d2f6b796c65737465747a2f617564696f6b6579732f6d61737465722f696d616765732f617564696f6b6579732d6d617070696e672d726f7773322e6a7067"
+            target="_blank">computer keyboard</a>, or with a MIDI controller on
+          <a href="https://caniuse.com/#feat=midi" target="_blank">a MIDI capable web browser</a>.
+        </div>
+        <div class="midi-supported-no-inputs" style="display: none">
+          Play and hold a melody or chord using a MIDI controller or
+          <a href="https://camo.githubusercontent.com/29529110d639ed79a04752c036fe301fd15c961b/68747470733a2f2f7261772e6769746875622e636f6d2f6b796c65737465747a2f617564696f6b6579732f6d61737465722f696d616765732f617564696f6b6579732d6d617070696e672d726f7773322e6a7067"
+            target="_blank">computer keyboard</a>.
+        </div>
+        <div class="midi-supported-with-inputs" style="display: none">
+          Play and hold a melody or chord using MIDI controller
+          <div class="mdc-select mdc-select--theme-light">
+            <select id="midi-inputs" class="mdc-select__surface" role="presentation"></select>
+            <div class="mdc-select__bottom-line"></div>
+          </div> or
+          <a href="https://camo.githubusercontent.com/29529110d639ed79a04752c036fe301fd15c961b/68747470733a2f2f7261772e6769746875622e636f6d2f6b796c65737465747a2f617564696f6b6579732f6d61737465722f696d616765732f617564696f6b6579732d6d617070696e672d726f7773322e6a7067"
+            target="_blank">computer keyboard</a>.
+        </div>
+        <p>A
+          <a href="https://github.com/tensorflow/magenta/tree/master/magenta/models/improv_rnn" target="_blank">neural
+            network</a> will pick up where you left off and it'll keep playing for as long as you hold the keys down.
+        </p>
+        <p>Using the
+          <a href="https://github.com/tensorflow/magenta/tree/master/magenta/models/improv_rnn">Improv RNN</a>
+          (pretrained) model from
+          <a href="https://magenta.tensorflow.org/">Google Magenta</a>, and
+          <a href="https://goo.gl/magenta/js">Magenta.js</a> +
+          <a href="https://js.tensorflow.org/">TensorFlow.js</a> +
+          <a href="https://tonejs.github.io/">Tone.js</a>.
+        </p>
+      </div>
+    </div>
+    <div class="keyboard">
+    </div>
+    <div class="loading">
+      Loading...
+    </div>
+  </div>
+</body>
+
+</html>
