@@ -28,25 +28,11 @@ let sampler = new Tone.Sampler({
 }).connect(reverb);
 sampler.release.value = 2;
 
-let builtInKeyboard = new AudioKeys({ rows: 2 });
-let onScreenKeyboardContainer = document.querySelector('.keyboard');
-let onScreenKeyboard = buildKeyboard(onScreenKeyboardContainer);
-let machinePlayer = buildKeyboard(
-  document.querySelector('.machine-bg .player')
-);
-let humanPlayer = buildKeyboard(document.querySelector('.human-bg .player'));
 
-let currentSeed = [];
-let stopCurrentSequenceGenerator;
-let synthFilter = new Tone.Filter(300, 'lowpass').connect(
-  new Tone.Gain(0.4).toMaster()
-);
-let synthConfig = {
-  oscillator: { type: 'fattriangle' },
-  envelope: { attack: 3, sustain: 1, release: 1 }
-};
-let synthsPlaying = {};
-
+function isAccidental(note) {
+  let pc = note % 12;
+  return pc === 1 || pc === 3 || pc === 6 || pc === 8 || pc === 10;
+}
 
 function buildKeyboard(container) {
   let nAccidentals = _.range(MIN_NOTE, MAX_NOTE + 1).filter(isAccidental)
@@ -76,7 +62,24 @@ function buildKeyboard(container) {
   });
 }
 
+let builtInKeyboard = new AudioKeys({ rows: 2 });
+let onScreenKeyboardContainer = document.querySelector('.keyboard');
+let onScreenKeyboard = buildKeyboard(onScreenKeyboardContainer);
+let machinePlayer = buildKeyboard(
+  document.querySelector('.machine-bg .player')
+);
+let humanPlayer = buildKeyboard(document.querySelector('.human-bg .player'));
 
+let currentSeed = [];
+let stopCurrentSequenceGenerator;
+let synthFilter = new Tone.Filter(300, 'lowpass').connect(
+  new Tone.Gain(0.4).toMaster()
+);
+let synthConfig = {
+  oscillator: { type: 'fattriangle' },
+  envelope: { attack: 3, sustain: 1, release: 1 }
+};
+let synthsPlaying = {};
 function humanKeyDown(note, velocity = 0.7) {
   if (note < MIN_NOTE || note > MAX_NOTE) return;
   let freq = Tone.Frequency(note, 'midi');
@@ -243,10 +246,10 @@ document.documentElement.addEventListener('touchend', updateTouchedNotes);
 
 // Temperature control
 
-let tempSlider = new mdc.slider.MDCSlider(
-  document.querySelector('#temperature')
-);
-tempSlider.listen('MDCSlider:change', () => temperature = tempSlider.value);
+// let tempSlider = new mdc.slider.MDCSlider(
+//   document.querySelector('#temperature')
+// );
+// tempSlider.listen('MDCSlider:change', () => temperature = tempSlider.value);
 
 // Controls hiding
 

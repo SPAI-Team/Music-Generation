@@ -9,9 +9,12 @@
   <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tonaljs/tonal/browser/tonal.min.js"></script>
-  <script src="https://unpkg.com/audiokeys"></script>
+  <!-- <script src="https://unpkg.com/audiokeys"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
 
-  <script src='piano.js'></script>
+  <script src="audiokeys.js"></script>
+  <script src="lodash.js"></script>
+  <script src='piano.js' defer></script>
 
 </head>
 
@@ -74,7 +77,7 @@
         </p>
       </div>
     </div>
-    <div class="keyboard">
+    <div class="keyboard" id="keyboard">
     </div>
     <div class="loading">
       Loading...
