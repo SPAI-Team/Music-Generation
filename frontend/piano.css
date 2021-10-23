@@ -1,0 +1,29 @@
+/*Classes*/
+body{
+    background-image: url('https://i.imgur.com/4IjP9eW.jpg')
+}
+
+.bg_blue{
+    background-color:#1F37D2;
+}
+
+
+
+.nav-link{
+    margin-right: 20px;
+    color:black;
+}
+.navbar-nav{
+    margin-top: 30px;
+}
+.bg-light{
+    --bs-bg-opacity:0
+}
+.margin-top{
+    margin-top: 3em;
+}
+
+p.C {
+    text-indent: 50px;
+
+  }
