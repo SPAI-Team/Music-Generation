@@ -270,6 +270,16 @@ container.addEventListener('touchstart', () => {
 
 // Startup
 
+function generateDummySequence() {
+  // Generate a throwaway sequence to get the RNN loaded so it doesn't
+  // cause jank later.
+  return rnn.continueSequence(
+    buildNoteSequence([{ note: 60, time: Tone.now() }]),
+    20,
+    temperature,
+    ['Cm']
+  );
+}
 
 let bufferLoadPromise = new Promise(res => Tone.Buffer.on('load', res));
 Promise.all([bufferLoadPromise, rnn.initialize()])
