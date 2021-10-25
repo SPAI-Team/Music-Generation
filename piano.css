@@ -1,0 +1,58 @@
+/*Classes*/
+.bg_blue{
+    background-color:#1F37D2;
+}
+
+
+
+.nav-link{
+    margin-right: 20px;
+    color:black;
+}
+.navbar-nav{
+    margin-top: 30px;
+}
+.bg-light{
+    --bs-bg-opacity:0
+}
+.margin-top{
+    margin-top: 3em;
+}
+
+p.C {
+    text-indent: 50px;
+
+  }
+  #temp {
+    background-color: white;
+    font-size: large;
+}
+
+#navbarNav{
+    padding-top: 1.5rem;
+    padding-left: 1rem;
+}
+
+.nav{
+    padding-right: 1.5rem;
+}
+
+a.nav-link{
+    color: rgba(0,0,0,.9);
+}
+
+#about{
+    padding-left: 2rem;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+
+}
+
+.list{
+    padding-top: 2rem;
+}
