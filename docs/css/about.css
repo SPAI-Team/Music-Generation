@@ -1,0 +1,138 @@
+body {
+    /* Purple spots :  #586EFD
+Light purple spots : #ECF1FA */
+    /* background-color:#1F37D2;   */
+    font-family: Poppins
+  }
+
+  #about {
+    padding-top: 80px;
+  }
+
+  /* 1st and 3rd paragraph */
+  p.C {
+    border-style: groove;
+    border-width: medium;
+    padding: 20px;
+    width: 700px;
+
+  }
+
+  /* C1 = 2nd paragraph */
+  p.C1 {
+    position: relative;
+    border-style: groove;
+    border-width: medium;
+    padding: 20px;
+    width: 700px;
+    left: 400px;
+  }
+
+  /* a:link,
+  a:visited {
+    background-color: #0051ff;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  } */
+
+
+  /* mouse over link */
+  /* #about2 a:hover,
+  a:active {
+    background-color: rgb(255, 0, 191);
+  } */
+
+  div.w3-top {
+    display: inline;
+    padding: 0px;
+    background-color: #dddddd;
+  }
+
+  #ML,
+  .flip1 {
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    background-color: #096d8b;
+    color: white;
+    border: solid 1px #06257a;
+    margin: auto;
+    cursor: pointer;
+  }
+
+  #ML {
+    display: none;
+
+  }
+
+
+  #Website,
+  .flip2 {
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+    background-color: #096d8b;
+    color: white;
+    border: solid 1px #06257a;
+    margin: auto;
+    cursor: pointer;
+  }
+
+  #Website {
+    display: none;
+  }
+
+  /* .flip1 {
+  float: left;
+  width: 50%;
+}
+
+.flip2 {
+  float: right;
+  width: 50%;
+} */
+
+  /* #ML.Explanation {
+  float: center;
+  width: 50%;
+  padding: 5px;
+}
+
+#Website.Explanation {
+  float: left;
+  width: 50%;
+  padding: 5px;
+} */
+
+
+
+
+  .arrow {
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 8px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+  #temp {
+    background-color: white;
+    font-size: large;
+}
+
+#navbarNav{
+    padding-top: 1.5rem;
+    padding-left: 1rem;
+}
+
+.nav{
+    padding-right: 1.5rem;
+}
+
+a.nav-link{
+    color: rgba(0,0,0,.9);
+}
