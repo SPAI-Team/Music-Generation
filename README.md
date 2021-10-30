@@ -1,1 +1,3 @@
-# Music-Generator
+# Project <>
+
+<> is an AI powered piano. 
