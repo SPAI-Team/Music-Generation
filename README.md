@@ -1,6 +1,6 @@
 # Project <>
 
-<> is an AI powered piano. 
+<> is an AI powered piano. It uses Magenta.js to produce stunning music.
 
 
 ## Credits

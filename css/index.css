@@ -1,3 +1,9 @@
+/* General Styles */
+
+html, body {
+    overflow-x: hidden;
+}
+
 /*Classes*/
 
 .bg_blue{
@@ -57,6 +63,7 @@
 
 
 
+
 #about-section {
     background-color: #EFF2F7;
     
@@ -98,6 +105,12 @@
 }
 #about-4 {
     margin-top : 10em;
+}
+
+@media (max-width: 768px) {
+    #about-2, #about-3, #about-4 {
+        margin-top: 2em;
+    }
 }
 
 #project-desc{
