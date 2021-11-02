@@ -1,131 +1,138 @@
 /* General Styles */
 
-html, body {
-    overflow-x: hidden;
+html,
+body {
+  overflow-x: hidden;
 }
 
 /*Classes*/
 
-.bg_blue{
-    background-color:#1F37D2;
+.bg_blue {
+  background-color: #1f37d2;
 }
 .bg_height {
-    height:   33em;
+  height: 33em;
 }
 
-.hr_divider{
-    margin-top: 0px;
-    border-top: 4px solid #C8C8C8
+.hr_divider {
+  margin-top: 0px;
+  border-top: 4px solid #c8c8c8;
 }
 
 .intro_text_align {
-    margin-left: 40px;
+  margin-left: 40px;
 }
 
-.nav-link{
-    margin-right: 20px;
-    color:black;
+.nav-link {
+  margin-right: 20px;
+  color: black;
 }
-.navbar-nav{
-    margin-top: 30px;
-    color: violet;
+.navbar-nav {
+  margin-top: 30px;
+  color: violet;
 }
-.bg-light{
-    --bs-bg-opacity:0
+.bg-light {
+  --bs-bg-opacity: 0;
 }
-.margin-top{
-    margin-top: 3em;
+.margin-top {
+  margin-top: 3em;
 }
-.white-button{
-    border-color: #ffffff;
-    color: white;
+.white-button {
+  border-color: #ffffff;
+  color: white;
 }
-.paragraph-styles{
-    padding:30px;
-    background-color: white;
-    height : 500px;
-    overflow: auto;
+.paragraph-styles {
+  padding: 30px;
+  background-color: white;
+  height: 500px;
+  overflow: auto;
 }
-.btn{
-    border-radius: 0.5rem;
-    font-size: 1.2em;
-    border : 2px solid white;
+.btn {
+  border-radius: 0.5rem;
+  font-size: 1.2em;
+  border: 2px solid white;
 }
-.vert-container{
-    position:relative
+.vert-container {
+  position: relative;
 }
-.vert-center{
-    position : absolute;
-    top:50%;
-    -ms-transform: translateY(-50%);
-    transform:translateY(-50%)
+.vert-center {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
-
-
-
 
 #about-section {
-    background-color: #EFF2F7;
-    
-
+  background-color: #eff2f7;
 }
 /*IDs*/
-#project_header{
-    margin-top : 3.6em;
-    font-weight: 'Light 300';   
-    font-family: 'Poppins';
+#project_header {
+  margin-top: 3.6em;
+  font-weight: "Light 300";
+  font-family: "Poppins";
 }
 #project_intro {
-    color: rgb(185, 185, 185);
-    font-family: 'Poppins';
-    font-weight:'Thin 100' ;
+  color: rgb(185, 185, 185);
+  font-family: "Poppins";
+  font-weight: "Thin 100";
 }
 #about-section-title {
-    font-family: 'Poppins';
-    text-align: center;
-    margin-top: 2em;
-    margin-bottom: 2em;
+  font-family: "Poppins";
+  text-align: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
-#about-section-content{
-    padding-top: 3em;
-    padding-bottom: 3em;
+#about-section-content {
+  padding-top: 3em;
+  padding-bottom: 3em;
 }
 
-
-
-#about-1{
-    border-style: none;
+#about-1 {
+  border-style: none;
 }
-#about-2{
-    margin-top: 4em;
+#about-2 {
+  margin-top: 4em;
 }
 #about-3 {
-    margin-top : 7em;
+  margin-top: 7em;
 }
 #about-4 {
-    margin-top : 10em;
+  margin-top: 10em;
 }
 
-@media (max-width: 768px) {
-    #about-2, #about-3, #about-4 {
-        margin-top: 2em;
-    }
+@media only screen and (max-width: 768px) {
+  #about-2 {
+    margin-top: 0;
+  }
+  #about-3,
+  #about-4 {
+    margin-top: 2em;
+  }
+  .bg_height:first-of-type {
+    height: 17.5em;
+  }
 }
 
-#project-desc{
-    color:white;
-    margin-left: 3em;
-    margin-right: 3em;
-    font-size: 1.2em;
-    margin-bottom: 2em;
+@media only screen and (max-width: 576px) {
+  #about-2,
+  #about-3,
+  #about-4 {
+    margin-top: 2em;
+  }
 }
 
-#nav{
-    font-size: large;
-
+#project-desc {
+  color: white;
+  margin-left: 3em;
+  margin-right: 3em;
+  font-size: 1.2em;
+  margin-bottom: 2em;
 }
 
+#nav {
+  font-size: large;
+}
 
 /**/
 /* #temp {
@@ -139,4 +146,3 @@ html, body {
    color: #1F37D2;
    background-color: white;
 } */
-
