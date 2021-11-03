@@ -1,24 +1,38 @@
-body {
-  font-family: Poppins
+html, body {
+  overflow-x: hidden;
 }
 
-#about {
-  padding-top: 80px;
+.nav-link {
+  margin-right: 20px;
+  color: black;
 }
+
+.navbar-nav {
+  margin-top: 30px;
+  color: violet;
+}
+
+#nav {
+  font-size: large;
+}
+
+/* #about {
+  padding-top: 80px;
+} */
 
 /* 1st and 3rd paragraph */
 
-p.C {
+/* p.C {
   border-style: groove;
   border-width: medium;
   padding: 20px;
   width: 700px;
   margin: 50px;
-}
+} */
 
 /* C1 = 2nd paragraph */
 
-p.C1 {
+/* p.C1 {
   position: relative;
   border-style: groove;
   border-width: medium;
@@ -27,7 +41,7 @@ p.C1 {
   left: 700px;
 }
 
-#Github{
+#Github {
   font-size: larger;
   font-weight: bold;
 }
@@ -38,11 +52,11 @@ p.C1 {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-}
+} */
 
 /* mouse over link */
 
-#Github a:hover, a:active {
+/* #Github a:hover, a:active {
   background-color: rgb(255, 0, 191);
 }
 
@@ -70,6 +84,6 @@ a.nav-link {
   color: rgba(0, 0, 0, .9);
 }
 
-#Visit{
-  margin : 10px;
-}
+#Visit {
+  margin: 10px;
+} */
