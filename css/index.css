@@ -109,9 +109,6 @@ body {
   #about-4 {
     margin-top: 2em;
   }
-  .bg_height:first-of-type {
-    height: 17.5em;
-  }
 }
 
 @media only screen and (max-width: 576px) {
