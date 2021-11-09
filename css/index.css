@@ -117,6 +117,15 @@ body {
   #about-4 {
     margin-top: 2em;
   }
+  .bg_height:first-child {
+    height: 15em;
+  }
+  .bg_height:last-child {
+    height: 25em;
+  }
+  #project_header {
+    margin-top: 1em;
+  }
 }
 
 #project-desc {
