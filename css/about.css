@@ -1,10 +1,14 @@
-html, body {
+html,
+body {
   overflow-x: hidden;
+  height: 100%;
+  width: 100%;
 }
 
 .nav-link {
   margin-right: 20px;
   color: black;
+  white-space: nowrap;
 }
 
 .navbar-nav {
@@ -13,4 +17,17 @@ html, body {
 
 #nav {
   font-size: large;
+}
+
+#bg {
+  position: absolute;
+  z-index: -100;
+  height: 100%;
+  width: 100%;
+}
+
+.wave {
+  transform: rotate(180deg);
+  fill: #1f37d2;
+  width: 50%;
 }
