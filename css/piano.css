@@ -124,7 +124,7 @@ a:visited {
 .machine-bg .player,
 .human-bg .player {
   position: absolute;
-  width: 90vw;
+  width: 100vw;
   top: 0;
   bottom: 0;
 }
