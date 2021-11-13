@@ -67,9 +67,7 @@ html {
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
   bottom: 0;
-
   color: black;
   font-family: "Abel", sans-serif;
 }
@@ -126,7 +124,6 @@ a:visited {
 .machine-bg .player,
 .human-bg .player {
   position: absolute;
-  left: 5vw;
   width: 90vw;
   top: 0;
   bottom: 0;
