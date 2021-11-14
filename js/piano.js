@@ -1,10 +1,12 @@
 const MIN_NOTE = 48; // should refer to the MIDI note number
 const MAX_NOTE = 84;
 
-// Using the Improv RNN pretrained model from https://github.com/tensorflow/magenta/tree/master/magenta/models/improv_rnn
+// Using the Improv RNN pretrained model from  
 let rnn = new mm.MusicRNN(
-  'https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv'
+  // 'https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv'
+  'http://download.magenta.tensorflow.org/models/performance_with_dynamics.mag'
 );
+
 let temperature = 1.1; // hyperpameter of the model, decides how random the model output is
 
 let reverb = new Tone.Convolver('https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/hm2_000_ortf_48k.mp3').toMaster();
@@ -77,11 +79,12 @@ function buildKeyboard(container) { // dynamically generates the keyboard
   });
 }
 
-function getSeedIntervals(seed) {
+function getSeedIntervals(seed) { 
   let intervals = [];
   for (let i = 0; i < seed.length - 1; i++) {
     let rawInterval = seed[i + 1].time - seed[i].time;
-    let measure = _.minBy(['8n', '4n'], subdiv =>
+    let measure = _.minBy(['8n', '4n'], subdiv => // returns the minimum value of an array, after mapping each element to a value using the provided function
+      // subdiv --> 16th note
       Math.abs(rawInterval - Tone.Time(subdiv).toSeconds())
     );
     intervals.push(Tone.Time(measure).toSeconds());
@@ -100,7 +103,8 @@ function getSequenceLaunchWaitTime(seed) {
 
 function getSequencePlayIntervalTime(seed) {
   if (seed.length <= 1) {
-    return Tone.Time('8n').toSeconds();
+    return Tone.Time('8n').toSeconds(); // Tone.Time is a primitive type for encoding Time values 
+    // (1n, 2n, 4n, 8n = whole note, half note, quarter note, eighth note respectively)
   }
   let intervals = getSeedIntervals(seed).sort();
   return _.first(intervals);
@@ -160,14 +164,14 @@ function startSequenceGenerator(seed) {
   let generatedSequence =
     Math.random() < 0.7 ? _.clone(seedSeq.notes.map(n => n.pitch)) : [];
   let launchWaitTime = getSequenceLaunchWaitTime(seed);
-  let playIntervalTime = getSequencePlayIntervalTime(seed);
+  let playIntervalTime = getSequencePlayIntervalTime(seed); // time interval between two notes
   let generationIntervalTime = playIntervalTime / 2;
 
   function generateNext() { // generates the notes based on the sequence
     if (!running) return;
     if (generatedSequence.length < 10) {
        lastGenerationTask = rnn
-        .continueSequence(seedSeq, 20, temperature, [chord])
+        .continueSequence(seedSeq, 20, temperature, [chord]) // continues a provided quantized NoteSequence
         .then(genSeq => {
           generatedSequence = generatedSequence.concat(
             genSeq.notes.map(n => n.pitch)
@@ -181,7 +185,7 @@ function startSequenceGenerator(seed) {
 
   function consumeNext(time) {
     if (generatedSequence.length) {
-      let note = generatedSequence.shift();
+      let note = generatedSequence.shift(); // .shift() removes the first element from an array and returns that removed element
       if (note > 0) {
         machineKeyDown(note, time);
       }
@@ -189,10 +193,10 @@ function startSequenceGenerator(seed) {
   }
 
   setTimeout(generateNext, launchWaitTime * 1000);
-  let consumerId = Tone.Transport.scheduleRepeat(
-    consumeNext,
-    playIntervalTime,
-    Tone.Transport.seconds + launchWaitTime
+  let consumerId = Tone.Transport.scheduleRepeat( // schedule a repeated event along the timeline, the event will fire at the interval starting at the startTime and for the specified duration
+    consumeNext, // the callback to invoke
+    playIntervalTime, // start time
+    Tone.Transport.seconds + launchWaitTime // duration
   );
 
   return () => {
@@ -230,8 +234,8 @@ function humanKeyDown(note, velocity = 0.7) {
   let freq = Tone.Frequency(note, 'midi');
   let synth = new Tone.Synth(synthConfig).connect(synthFilter);
   synthsPlaying[note] = synth;
-  synth.triggerAttack(freq, Tone.now(), velocity);
-  sampler.triggerAttack(freq); // play the note
+  synth.triggerAttack(freq, Tone.now(), velocity); // play the note [note;time;velocity(how "loud" the note will be triggered)]
+  sampler.triggerAttack(freq);
   updateChord({ add: note }); // add note to chord
   humanPlayer[note - MIN_NOTE].classList.add('down');
   animatePlay(onScreenKeyboard[note - MIN_NOTE], note, true);
@@ -241,7 +245,7 @@ function humanKeyUp(note) {
   if (note < MIN_NOTE || note > MAX_NOTE) return;
   if (synthsPlaying[note]) {
     let synth = synthsPlaying[note];
-    synth.triggerRelease();
+    synth.triggerRelease(); // stop playing the note [time]
     setTimeout(() => synth.dispose(), 2000);
     synthsPlaying[note] = null;
   }
@@ -432,3 +436,4 @@ Promise.all([bufferLoadPromise, rnn.initialize()])
   });
 
 StartAudioContext(Tone.context, document.documentElement);
+

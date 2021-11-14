@@ -156,11 +156,12 @@ a:visited {
   position: absolute;
   /* left: 5vw; */
   width: 85vw;
-  top: calc(50% - 125px);
+  top: calc(50% - 80px);
   height: 250px;
   opacity: 0;
   transition: opacity 0.7s ease-in;
 }
+
 .keyboard.loaded {
   opacity: 1;
 }
@@ -197,3 +198,4 @@ a:visited {
   color: black;
   font-size: 40px;
 }
+
