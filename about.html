@@ -48,52 +48,56 @@
   </header>
 
   <!-- Steps -->
-  <section class="container-fluid mt-2" style="padding: 0 40px">
+  <section class="container-fluid mt-2">
     <h1 class="text-center" style="font-size: xx-large">How it works</h1>
     <p class="text-center" style="font-size: large">
       Music Generator explained in 3 steps
     </p>
-    <div class="
-          col-lg-6 col-md-10
-          offset-md-1 offset-lg-0
-          p-4 p-lg-5
-          border border-3
-          mt-4
-          my-3 my-lg-2
-        " style="background-color: #eff2f7; border-radius: 25px">
-      <p class="text-justify">
-        The entire system is powered by a Recurrent Neural Network (RNN). A neural network is an AI model loosely
-        inspired by how our brains work, where the neurons in our brain take in signals and produce responses based on
-        these signals. The neural network is taught by letting it experience multiple training examples. It then
-        evaluates its ability to give the correct output. Finally, it learns from its experience and improves itself.
-      </p>
-    </div>
-    <div class="
-          col-lg-6 col-md-10
-          offset-md-1 offset-lg-6
-          p-4 p-lg-5
-          border border-3
-          my-3 my-lg-2
-        " style="background-color: #eff2f7; border-radius: 25px">
-      <p class="text-justify">
-        An RNN is just a type of neural network that can make predictions based on prior inputs in a sequence provided
-        to it. More specifically, we trained the RNN to predict the next note in a piano performance, given the
-        information on the past notes that were played by the user. So, what happens when you play our piano?
-      </p>
-    </div>
-    <div class="
-          col-lg-6 col-md-10
-          offset-md-1 offset-lg-0
-          p-4 p-lg-5
-          border border-3
-          my-3 my-lg-2
-        " style="background-color: #eff2f7; border-radius: 25px">
-      <p class="text-justify">
-        As you play the notes, we record down the notes you play, and feed it into the model. Once the model is active,
-        it uses the notes played by the user to generate an output of list of probabilities of the next note that is to
-        be played. From there, the note with the highest probability would be selected and played by the AI. It then
-        takes the note that it just played and feeds it back into the RNN, generating the next note in the sequence.
-      </p>
+    <div class="px-lg-5 px-md-4 px-sm-3 mx-lg-4">
+      <div class="
+      col-lg-6 col-md-10
+      offset-md-1 offset-lg-0
+      p-4 p-lg-5
+      border border-3
+      mt-4
+      my-3 my-lg-2
+    " style="background-color: #eff2f7; border-radius: 25px">
+        <p class="text-justify">
+          The entire system is powered by a Recurrent Neural Network (RNN). A neural network is an AI model loosely
+          inspired by how our brains work, where the neurons in our brain take in signals and produce responses based on
+          these signals. The neural network is taught by letting it experience multiple training examples. It then
+          evaluates its ability to give the correct output. Finally, it learns from its experience and improves itself.
+        </p>
+      </div>
+      <div class="
+      col-lg-6 col-md-10
+      offset-md-1 offset-lg-6
+      p-4 p-lg-5
+      border border-3
+      my-3 my-lg-2
+    " style="background-color: #eff2f7; border-radius: 25px">
+        <p class="text-justify">
+          An RNN is just a type of neural network that can make predictions based on prior inputs in a sequence provided
+          to it. More specifically, we trained the RNN to predict the next note in a piano performance, given the
+          information on the past notes that were played by the user. So, what happens when you play our piano?
+        </p>
+      </div>
+      <div class="
+      col-lg-6 col-md-10
+      offset-md-1 offset-lg-0
+      p-4 p-lg-5
+      border border-3
+      my-3 my-lg-2
+    " style="background-color: #eff2f7; border-radius: 25px">
+        <p class="text-justify">
+          As you play the notes, we record down the notes you play, and feed it into the model. Once the model is
+          active,
+          it uses the notes played by the user to generate an output of list of probabilities of the next note that is
+          to
+          be played. From there, the note with the highest probability would be selected and played by the AI. It then
+          takes the note that it just played and feeds it back into the RNN, generating the next note in the sequence.
+        </p>
+      </div>
     </div>
     <p class="text-center">
       Visit our <a href="#">Github page</a> to get the full code!
