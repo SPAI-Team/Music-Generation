@@ -1,11 +1,42 @@
-const MIN_NOTE = 48;
-const MAX_NOTE = 84;
+let MIN_NOTE = 48; // should refer to the MIDI note number
+let MAX_NOTE =84
 
+
+
+
+  let screen_size = parseInt(window.innerWidth);
+  switch(true) {
+    case screen_size<480:
+      MAX_NOTE = 60
+      break; 
+    case screen_size>=480 && screen_size<680:
+      MAX_NOTE = 72
+      break;
+    default:
+      MAX_NOTE = 84;
+  }
+
+
+
+window.addEventListener('resize', function() {
+  alert('window size change')
+  var screen_size = parseInt(window.innerWidth)
+  switch(true) {
+    case screen_size<480:
+      MAX_NOTE = 60
+      break; 
+    case screen_size>=480 && screen_size<680:
+      MAX_NOTE = 72
+      break;
+    default:
+      MAX_NOTE = 84;
+  }
+})
 // Using the Improv RNN pretrained model from https://github.com/tensorflow/magenta/tree/master/magenta/models/improv_rnn
 let rnn = new mm.MusicRNN(
   'https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv'
 );
-let temperature = 1.1;
+let temperature = 1.1; // hyperpameter of the model, decides how random the model output is
 
 let reverb = new Tone.Convolver('https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/hm2_000_ortf_48k.mp3').toMaster();
 //reverb.wet.value = 0.25;
@@ -22,41 +53,46 @@ let sampler = new Tone.Sampler({
   'D#5': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-ds5.mp3',
   'F#5': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-fs5.mp3',
   A5: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-a5.mp3'
-}).connect(reverb);
+}).connect(reverb); // sound clips used by the piano
 sampler.release.value = 2;
 
-let builtInKeyboard = new AudioKeys({ rows: 2 });
+let builtInKeyboard = new AudioKeys({ rows: 2 }); // audiokeys is a library that lets you use pc keyboard as a piano keyboard
 let onScreenKeyboardContainer = document.querySelector('.keyboard');
 let onScreenKeyboard = buildKeyboard(onScreenKeyboardContainer);
 let machinePlayer = buildKeyboard(
   document.querySelector('.machine-bg .player')
-);
+); // a separate keyboard for the ai to play
 let humanPlayer = buildKeyboard(document.querySelector('.human-bg .player'));
 
 let currentSeed = [];
 let stopCurrentSequenceGenerator;
 let synthFilter = new Tone.Filter(300, 'lowpass').connect(
   new Tone.Gain(0.4).toMaster()
-);
+); // just a sound filter to change the sound of the piano
 let synthConfig = {
   oscillator: { type: 'fattriangle' },
   envelope: { attack: 3, sustain: 1, release: 1 }
 };
 let synthsPlaying = {};
 
-function isAccidental(note) {
+function isAccidental(note) { // used when building the piano to see which are the accidental notes
   let pc = note % 12;
   return pc === 1 || pc === 3 || pc === 6 || pc === 8 || pc === 10;
 }
 
-function buildKeyboard(container) {
+function buildKeyboard(container) { // dynamically generates the keyboard 
   let nAccidentals = _.range(MIN_NOTE, MAX_NOTE + 1).filter(isAccidental)
     .length;
-  let keyWidthPercent = 100 / (MAX_NOTE - MIN_NOTE - nAccidentals + 1);
+  let keyWidthPercent = 100 / (MAX_NOTE - MIN_NOTE - nAccidentals + 1); // calculate width of key
   let keyInnerWidthPercent =
     100 / (MAX_NOTE - MIN_NOTE - nAccidentals + 1) - 0.5;
   let gapPercent = keyWidthPercent - keyInnerWidthPercent;
   let accumulatedWidth = 0;
+  console.log(window.innerWidth)
+  console.log(typeof(window.innerWidth))
+  
+
+
   return _.range(MIN_NOTE, MAX_NOTE + 1).map(note => {
     let accidental = isAccidental(note);
     let key = document.createElement('div');
@@ -116,10 +152,10 @@ function detectChord(notes) {
 //       return names.length ? tonic + names[0] : null;
 //     })
 //     .filter(x => x);
-    return Tonal.Chord.detect(notes);
+    return Tonal.Chord.detect(notes); // based on a list of notes, detect the chord
 }
 
-function buildNoteSequence(seed) {
+function buildNoteSequence(seed) { // NoteSequence is the way data is sent to the model
   return mm.sequences.quantizeNoteSequence(
     {
       ticksPerQuarter: 220,
@@ -140,7 +176,7 @@ function buildNoteSequence(seed) {
           qpm: 120
         }
       ],
-      notes: seed.map((n, idx) => ({
+      notes: seed.map((n, idx) => ({ // format of the input to the model
         pitch: n.note,
         startTime: idx * 0.5,
         endTime: (idx + 1) * 0.5
@@ -163,7 +199,7 @@ function startSequenceGenerator(seed) {
   let playIntervalTime = getSequencePlayIntervalTime(seed);
   let generationIntervalTime = playIntervalTime / 2;
 
-  function generateNext() {
+  function generateNext() { // generates the notes based on the sequence
     if (!running) return;
     if (generatedSequence.length < 10) {
        lastGenerationTask = rnn
@@ -213,11 +249,15 @@ function updateChord({ add = null, remove = null }) {
     stopCurrentSequenceGenerator();
     stopCurrentSequenceGenerator = null;
   }
-  if (currentSeed.length && !stopCurrentSequenceGenerator) {
+
+  // the model starts playing here
+  // if there is some input to send to the model (.length)
+  // and nothing telling it to stop
+  if (currentSeed.length && !stopCurrentSequenceGenerator) { 
     resetState = true;
     stopCurrentSequenceGenerator = startSequenceGenerator(
       _.cloneDeep(currentSeed)
-    );
+    ); // then start the ai generation
   }
 }
 
@@ -227,8 +267,8 @@ function humanKeyDown(note, velocity = 0.7) {
   let synth = new Tone.Synth(synthConfig).connect(synthFilter);
   synthsPlaying[note] = synth;
   synth.triggerAttack(freq, Tone.now(), velocity);
-  sampler.triggerAttack(freq);
-  updateChord({ add: note });
+  sampler.triggerAttack(freq); // play the note
+  updateChord({ add: note }); // add note to chord
   humanPlayer[note - MIN_NOTE].classList.add('down');
   animatePlay(onScreenKeyboard[note - MIN_NOTE], note, true);
 }
@@ -416,7 +456,7 @@ function generateDummySequence() {
     temperature,
     ['Cm']
   );
-}
+} 
 
 let bufferLoadPromise = new Promise(res => Tone.Buffer.on('load', res));
 Promise.all([bufferLoadPromise, rnn.initialize()])
