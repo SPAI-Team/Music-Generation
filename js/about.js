@@ -9,7 +9,6 @@ function start() {
   document.body.style.backgroundSize = `45%, 25%, 30%, ${scale}%`;
   var image = new Image();
   image.src = "../src/about_bottom_right.png";
-  console.log(image.height);
   document.body.style.backgroundPosition = `0px 0px, right 0px,0px ${
     maxheight / 2
   }px,right ${maxheight - image.height * (scale / 100)}px`;
