@@ -448,4 +448,4 @@ StartAudioContext(Tone.context, document.documentElement);
 
 // For Website
 document.getElementById("pianoDiv").style.top =
-  document.getElementById("top").offsetHeight - 150 + "px";
+  document.getElementById("top").offsetHeight - 20 + "px";
