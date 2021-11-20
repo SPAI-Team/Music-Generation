@@ -1,6 +1,5 @@
 function start() {
   var maxheight = document.body.scrollHeight;
-  var maxwidth = document.body.scrollWidth;
   document.body.style.backgroundImage = `url(../src/about_top_left.png),
     url(../src/about_top_right.png), url(../src/about_middle_left.png),
     url(../src/about_bottom_right.png)`;

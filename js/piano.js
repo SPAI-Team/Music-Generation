@@ -447,5 +447,22 @@ Promise.all([bufferLoadPromise, rnn.initialize()])
 StartAudioContext(Tone.context, document.documentElement);
 
 // For Website
-document.getElementById("pianoDiv").style.top =
-  document.getElementById("top").offsetHeight - 20 + "px";
+
+function start() {
+  document.getElementById("pianoDiv").style.top =
+    document.getElementById("top").offsetHeight - 20 + "px";
+  var maxheight = document.body.scrollHeight;
+  document.body.style.backgroundImage = `
+    url(../src/about_top_right.png), 
+    url(../src/piano_bottom.png)`;
+  var scale = 30;
+  document.body.style.backgroundRepeat = "no-repeat";
+  document.body.style.backgroundAttachment = "scroll";
+  document.body.style.backgroundSize = `25%, ${scale}%`;
+  var image = new Image();
+  image.src = "../src/piano_bottom.png";
+  console.log(image.height);
+  document.body.style.backgroundPosition = `right 0px,left ${
+    maxheight - image.height * (scale / 100)
+  }px`;
+}
