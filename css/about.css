@@ -1,5 +1,4 @@
-html,
-body {
+html {
   overflow-x: hidden;
   height: 100%;
   width: 100%;
@@ -18,13 +17,13 @@ body {
 #nav {
   font-size: large;
 }
+/* 
+body {
+  background-position: top left, top right, 0% 60%, 100% 100%;
+} */
 
-.wave {
-  transform: rotate(180deg);
-  fill: #1f37d2;
-  width: 50%;
-}
-
-#bg2 {
-  position: absolute;
+@media only screen and (max-width: 767px) {
+  .text-white {
+    color: black !important;
+  }
 }
