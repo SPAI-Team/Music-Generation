@@ -13,5 +13,4 @@ slider.addEventListener("mousemove", function() {
     var color = "linear-gradient(90deg, rgb(117,252,117)" + x + "%, pink" + x + "%)"
     slider.style.background = color;
     temperature = x;
-    print(temperature)
 })
