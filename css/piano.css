@@ -1,65 +1,59 @@
 /*Classes*/
-.bg_blue{
-    background-color:#1F37D2;
+.bg_blue {
+  background-color: #1f37d2;
 }
 
-
-
-.nav-link{
-    margin-right: 20px;
-    color:black;
+.nav-link {
+  margin-right: 20px;
+  color: black;
 }
-.navbar-nav{
-    margin-top: 30px;
+.navbar-nav {
+  margin-top: 30px;
 }
-.bg-light{
-    --bs-bg-opacity:0
+.bg-light {
+  --bs-bg-opacity: 0;
 }
-.margin-top{
-    margin-top: 3em;
+.margin-top {
+  margin-top: 3em;
 }
 
 p.C {
-    text-indent: 50px;
-
-  }
-  #temp {
-    background-color: white;
-    font-size: large;
+  text-indent: 50px;
+}
+#temp {
+  background-color: white;
+  font-size: large;
 }
 
-#navbarNav{
-    padding-top: 1.5rem;
-    padding-left: 1rem;
+#navbarNav {
+  padding-top: 1.5rem;
+  padding-left: 1rem;
 }
 
-.nav{
-    padding-right: 1.5rem;
+.nav {
+  padding-right: 1.5rem;
 }
 
-a.nav-link{
-    color: rgba(0,0,0,.9);
+a.nav-link {
+  color: rgba(0, 0, 0, 0.9);
 }
 
-#about{
-    padding-left: 2rem;
+#about {
+  padding-left: 2rem;
 }
 
-.container{
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 200px;
-
 }
 
-.list{
-    padding-top: 2rem;
+.list {
+  padding-top: 2rem;
 }
 
-
-* Piano
-body,
+* Piano body,
 html {
   margin: 0;
   padding: 0;
@@ -73,11 +67,9 @@ html {
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
   bottom: 0;
-
   color: black;
-  font-family: 'Abel', sans-serif;
+  font-family: "Abel", sans-serif;
 }
 a,
 a:visited {
@@ -132,8 +124,7 @@ a:visited {
 .machine-bg .player,
 .human-bg .player {
   position: absolute;
-  left: 5vw;
-  width: 90vw;
+  width: 100vw;
   top: 0;
   bottom: 0;
 }
@@ -196,4 +187,22 @@ a:visited {
 
   color: black;
   font-size: 40px;
+}
+h5 {
+  font-family: "Poppins";
+  font-size: calc(1.375rem + 1.5vw);
+}
+
+.navbar-nav {
+  margin-top: 10px;
+}
+
+#nav {
+  font-size: large;
+}
+
+@media only screen and (max-width: 576px) {
+  #project {
+    justify-content: center;
+  }
 }

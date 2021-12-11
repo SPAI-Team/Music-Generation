@@ -1,75 +1,29 @@
-body {
-  font-family: Poppins
+html {
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
 }
 
-#about {
-  padding-top: 80px;
+.nav-link {
+  margin-right: 20px;
+  color: white;
+  white-space: nowrap;
 }
 
-/* 1st and 3rd paragraph */
-
-p.C {
-  border-style: groove;
-  border-width: medium;
-  padding: 20px;
-  width: 700px;
-  margin: 50px;
+.navbar-nav {
+  margin-top: 30px;
 }
 
-/* C1 = 2nd paragraph */
-
-p.C1 {
-  position: relative;
-  border-style: groove;
-  border-width: medium;
-  padding: 20px;
-  width: 700px;
-  left: 700px;
-}
-
-#Github{
-  font-size: larger;
-  font-weight: bold;
-}
-
-#Github a:link, a:visited {
-  background-color: #f44336;
-  padding: 14px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-}
-
-/* mouse over link */
-
-#Github a:hover, a:active {
-  background-color: rgb(255, 0, 191);
-}
-
-div.w3-top {
-  display: inline;
-  padding: 0px;
-  background-color: #dddddd;
-}
-
-#temp {
-  background-color: white;
+#nav {
   font-size: large;
 }
+/* 
+body {
+  background-position: top left, top right, 0% 60%, 100% 100%;
+} */
 
-#navbarNav {
-  padding-top: 1.5rem;
-  padding-left: 1rem;
-}
-
-.nav {
-  padding-right: 1.5rem;
-}
-
-a.nav-link {
-  color: rgba(0, 0, 0, .9);
-}
-
-#Visit{
-  margin : 10px;
+@media only screen and (max-width: 768px) {
+  .text-white {
+    color: black !important;
+  }
 }
