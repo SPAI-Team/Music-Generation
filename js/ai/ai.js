@@ -92,7 +92,6 @@ class AI_Model extends EventEmitter {
     generateNext() { // generates the notes based on the sequence
         if (!this.running) return;
         if (this.generatedSequence.length < 10) {
-            console.log(`Chord1: ${this.chord}`);
             this.lastGenerationTask = this.rnn
                 .continueSequence(this.noteSeq, 20, this.temperature, [this.chord]) // continues a provided quantized NoteSequence
                 .then(genSeq => {
@@ -108,13 +107,11 @@ class AI_Model extends EventEmitter {
     }
 
     consumeNext(time) {
-        console.log(`Current Sequence: ${this.generatedSequence}`);
         if (this.generatedSequence.length) {
             let note = this.generatedSequence.shift(); // .shift() removes the first element from an array and returns that removed element
             if (note > 0) {
-                console.log(`AI: ${note}`);
                 this.emit("keyDown", note, false); // set human=false 
-                console.log("emitted??")
+                this.emit("keyUp", note)
             }
         }
     }
@@ -123,7 +120,6 @@ class AI_Model extends EventEmitter {
         this.lastGenerationTask = Promise.resolve();
         this.chord = this.detectChord(notes);
         this.chord = _.first(this.chord) || "CM";
-        console.log(`Chord2: ${this.chord}`);
         this.noteSeq = this.buildNoteSequence(notes);
         this.generatedSequence = Math.random() < 0.7 ? _.clone(this.noteSeq.notes.map(n => n.pitch)) : [];
         let launchWaitTime = this.getSequenceLaunchWaitTime(notes);
