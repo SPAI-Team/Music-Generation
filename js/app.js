@@ -10,12 +10,8 @@ KEYBOARD.on("keyDown", (note, human) => {
 });
 
 AI.on("keyDown", (note, human) => {
-    KEYBOARD.emit("keyDown", note, human);
+    KEYBOARD._interface.keyDown(note, human);
     KEYBOARD.keyDown(note, human);
-})
-
-KEYBOARD.on("yeet", () => {
-    console.log("yeet")
 })
 
 KEYBOARD.on("keyUp", (note) => {
@@ -23,7 +19,6 @@ KEYBOARD.on("keyUp", (note) => {
     KEYBOARD._interface.keyUp(note);
 });
 
-// AI.on("keyDown", (note))
 function generateDummySequence() {
     return AI.rnn.continueSequence(
         AI.buildNoteSequence([
