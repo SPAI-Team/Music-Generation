@@ -11,6 +11,7 @@ KEYBOARD.on("keyDown", (note, human) => {
 
 AI.on("keyDown", (note, human) => {
     KEYBOARD.emit("keyDown", note, human);
+    KEYBOARD.keyDown(note, human);
 })
 
 KEYBOARD.on("yeet", () => {
