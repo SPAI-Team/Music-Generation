@@ -88,20 +88,20 @@ class OnScreenKeyboard extends EventEmitter {
                 duration: 700, easing: 'ease-out'
             }
         );
-        if (!human) {
-            key.animate(
-                [
-                    {
-                        opacity: 0.9
-                    },
-                    {
-                        opacity: 0
-                    }
-                ], {
-                duration: 700, easing: 'ease-out'
-            }
-            );
-        }
+        // if (!human) {
+        //     key.animate(
+        //         [
+        //             {
+        //                 opacity: 0.9
+        //             },
+        //             {
+        //                 opacity: 0
+        //             }
+        //         ], {
+        //         duration: 700, easing: 'ease-out'
+        //     }
+        //     );
+        // }
     }
 }
 
