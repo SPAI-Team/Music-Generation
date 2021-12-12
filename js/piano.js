@@ -3,8 +3,7 @@ const MAX_NOTE = 84;
 
 // Using the Improv RNN pretrained model from  
 let rnn = new mm.MusicRNN(
-  'https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv'
-  // 'http://download.magenta.tensorflow.org/models/performance_with_dynamics.mag'
+  'http://download.magenta.tensorflow.org/models/performance_with_dynamics.mag'
 );
 
 let temperature = 1.1; // hyperpameter of the model, decides how random the model output is
