@@ -81,8 +81,8 @@ a:visited {
   width: 100vw;
   /* top: calc(50% - 125px); */
   bottom: 0;
-  height: 250px;
   opacity: 0;
+  height: 30vh;
   transition: opacity 0.7s ease-in;
 }
 
@@ -145,5 +145,11 @@ a:visited {
 @media only screen and (max-width: 576px) {
   #project {
     justify-content: center;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .keyboard {
+    height: 50vh;
   }
 }
