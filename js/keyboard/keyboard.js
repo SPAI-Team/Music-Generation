@@ -16,7 +16,6 @@ class OnScreenKeyboard extends EventEmitter {
 
     resize(min_note, max_note) {
         this._container.innerHTML = ""; // clear previous keyboard
-        console.log("Cleared")
         let nAccidentals = _.range(min_note, max_note + 1).filter(this.isAccidental).length;
         let keyWidth = 100 / (max_note - min_note - nAccidentals + 1);
         let keyInnerWidth = 100 / (max_note - min_note - nAccidentals + 1) - 0.1;
@@ -39,20 +38,19 @@ class OnScreenKeyboard extends EventEmitter {
                 key.style.width = `${keyInnerWidth}%`;
             }
             this._container.appendChild(key);
-            console.log(`Add ${note}`)
             if (!accidental) {
                 accumulatedWidth += keyWidth;
             }
             this._bindKeyEvents(key);
             keys[note] = key;
         }
-        this.keys = keys;
+        this._keys = keys;
     }
 
     _bindKeyEvents(key) { // Add event listeners which will trigger when the key is pressed
         key.addEventListener("mousedown", (event) => {
             const noteNum = parseInt(event.target.id);
-            this.emit("keyDown", noteNum); // Emit event 
+            this.emit("keyDown", noteNum, true); // Emit event 
             this._pointedNotes[noteNum] = true;
             event.preventDefault();
         });
@@ -64,6 +62,7 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     keyDown(noteNum, human = true) {
+        console.log(noteNum)
         this._keys[noteNum].classList.add("down");
         this.animatePlay(this._keys[noteNum], noteNum, human);
     }
@@ -73,6 +72,7 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     animatePlay(key, noteNum, human) {
+        console.log(`human: ${human}`)
         let sourceColor = human ? "#1E88E5" : "#E91E63";
         let targetColor = this.isAccidental(noteNum) ? "black" : "white";
         key.animate(
@@ -115,8 +115,8 @@ class Keyboard extends EventEmitter {
             polyphony: 88
         });
         this._keyboard.down(event => {
-            this.keyDown(event.note);
-            this._emitKeyDown(event.note);
+            this.keyDown(event.note, true);
+            this._emitKeyDown(event.note, true);
 
         });
         this._keyboard.up(event => {
@@ -128,6 +128,7 @@ class Keyboard extends EventEmitter {
         // Configure On Screen Controls
         this._interface = new OnScreenKeyboard(this._container, this.min_note, this.max_note);
         this._interface.on("keyDown", (note, human) => {
+            console.log(`Is Human: ${human}`)
             this.keyDown(note, human);
             this._emitKeyDown(note, human);
         });
@@ -144,8 +145,8 @@ class Keyboard extends EventEmitter {
 
     }
 
-    _emitKeyDown(note) {
-        this.emit("keyDown", note);
+    _emitKeyDown(note, human) {
+        this.emit("keyDown", note, human);
     }
 
     _emitKeyUp(note) {

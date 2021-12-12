@@ -1,12 +1,25 @@
 const keyboard_container = document.querySelector(".keyboard");
 const KEYBOARD = new Keyboard(keyboard_container);
 const AI = new AI_Model();
-KEYBOARD.on("keyDown", (note) => {
-    AI.keyDown(note);
+KEYBOARD.on("keyDown", (note, human) => {
+    console.log(`Is Human? : ${ human }`)
+    if (human) {
+        AI.keyDown(note);
+    }
+    KEYBOARD._interface.keyDown(note, human);
 });
+
+AI.on("keyDown", (note, human) => {
+    KEYBOARD.emit("keyDown", note, human);
+})
+
+KEYBOARD.on("yeet", () => {
+    console.log("yeet")
+})
 
 KEYBOARD.on("keyUp", (note) => {
     AI.keyUp(note);
+    KEYBOARD._interface.keyUp(note);
 });
 
 // AI.on("keyDown", (note))
