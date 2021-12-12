@@ -1,27 +1,19 @@
-let reverb = new Tone.Convolver('https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/hm2_000_ortf_48k.mp3').toMaster();
-//reverb.wet.value = 0.25;
-let sampler = new Tone.Sampler({ // TODO: Use other sounds
-  C3: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-c3.mp3',
-  'D#3': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-ds3.mp3',
-  'F#3': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-fs3.mp3',
-  A3: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-a3.mp3',
-  C4: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-c4.mp3',
-  'D#4': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-ds4.mp3',
-  'F#4': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-fs4.mp3',
-  A4: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-a4.mp3',
-  C5: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-c5.mp3',
-  'D#5': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-ds5.mp3',
-  'F#5': 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-fs5.mp3',
-  A5: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/969699/plastic-marimba-a5.mp3'
-}).connect(reverb); // sound clips used by the piano
-sampler.release.value = 2;
+let chords = [
+    "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "D#1", "D#2", "D#3", "D#4", "D#5", "D#6", "D#7", "F#1", "F#2", "F#3", "F#4", "F#5", "F#6", "F#7"
+];
 
+let filemap = {};
+for (let chord of chords) {
+    
+    let filepath = `src/sounds/${chord.replace("#", "s")}.mp3`;
+    filemap[chord] = filepath;
+}
+console.log(filemap);
+let sampler = new Tone.Sampler(filemap).toMaster() //.connect(reverb); // sound clips used by the piano
+sampler.release.value = 1;
 let synthFilter = new Tone.Filter(300, 'lowpass').connect(
     new Tone.Gain(0.4).toMaster()
-  ); // just a sound filter to change the sound of the piano
-  let synthConfig = {
-    oscillator: { type: 'fattriangle' },
-    envelope: { attack: 3, sustain: 1, release: 1 }
-  };
-  let synthsPlaying = {};
-  
+); // just a sound filter to change the sound of the piano
+let synthConfig = {
+};
+let synthsPlaying = {};
