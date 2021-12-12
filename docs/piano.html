@@ -3,6 +3,8 @@
 <title>Piano</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="slider.css" type="text/css" rel="stylesheet">
+
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
 <link href='css/piano.css' rel='stylesheet'>
@@ -21,6 +23,7 @@
     <script src="js/audiokeys.js"></script>
     <script src="js/lodash.js"></script>
     <script src='js/piano.js' defer></script>
+    
 <body>
     <div class="col-sm-12 col-lg-12 bg_height navbar-light bg-light">
         <header>
@@ -58,6 +61,10 @@
   <div class="container">
     <div class="machine-bg">
       <div class="player"></div>
+      <div class="slideContainer">
+        <input type="range" min="1" max="100" value="1" id="myRange" class="slider">
+        <p id="slider-value">Value: <span id="value"></span></p>
+    </div>
       <!-- <div class="controls">
         <div>
           <div id="temperature" class="mdc-slider" tabindex="0" role="slider" aria-valuemin="0.2" aria-valuemax="2"
@@ -121,10 +128,9 @@
       Loading...
     </div>
   </div>
+
 </div>
 
-
-
 </body>
-
+<script src="slider.js"></script>
 </html>
