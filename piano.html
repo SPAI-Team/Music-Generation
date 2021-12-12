@@ -32,6 +32,7 @@
 <script src='js/ai/ai.js' defer></script>
 <script src="js/keyboard/keyboard.js" defer></script>
 <script src="js/app.js" defer></script>
+
 <body>
   <div class="bg_height navbar-light bg-light">
     <header>
@@ -60,58 +61,17 @@
     </header>
   </div>
 
-  </div>
 
-
-  <div class="w3-container" id="about">
-    <h5><span class="w3-wide" style="font-size: xx-large;">SPAI Music Generator</span></h5>
-    <ul class=list>
-      <li>Simply play a short piece of music or hold down a single note and our model will generate some music for you!
-      </li>
-    </ul>
+  <div class="slideContainer">
+    <label for="myRange"></label>
+    <input type="range" min="0" max="100" value="1" id="myRange" class="slider">
   </div>
   <div class="container">
-    <div class="container">
-      <div class="machine-bg">
-        <div class="player"></div>
-        <div class="slideContainer">
-          <input type="range" min="1" max="100" value="1" id="myRange" class="slider">
-          <p id="slider-value">Value: <span id="value"></span></p>
-        </div>
-        <!-- <div class="controls">
-        <div>
-          <div id="temperature" class="mdc-slider" tabindex="0" role="slider" aria-valuemin="0.2" aria-valuemax="2"
-            aria-valuenow="1.1" aria-label="Select temperature">
-            <div class="mdc-slider__track-container">
-              <div class="mdc-slider__track"></div>
-            </div>
-            <div class="mdc-slider__thumb-container">
-              <svg class="mdc-slider__thumb" width="21" height="21">
-                <circle cx="10.5" cy="10.5" r="7.875"></circle>
-              </svg>
-              <div class="mdc-slider__focus-ring"></div>
-            </div>
-          </div>
-          Temperature
-        </div>
-      </div> -->
-      </div>
+    <div class="keyboard" id="keyboard"></div>
+  </div>
 
-      <div class="human-bg">
-        <div class="player"></div>
-        <div class="controls">
-          <div class="midi-not-supported">
-            Play and hold a melody or chord using the
-            <a href="https://camo.githubusercontent.com/29529110d639ed79a04752c036fe301fd15c961b/68747470733a2f2f7261772e6769746875622e636f6d2f6b796c65737465747a2f617564696f6b6579732f6d61737465722f696d616765732f617564696f6b6579732d6d617070696e672d726f7773322e6a7067"
-              target="_blank">computer keyboard</a>, or with a MIDI controller on
-            <a href="https://caniuse.com/#feat=midi" target="_blank">a MIDI capable web browser</a>.
-          </div>
-          <div class="midi-supported-no-inputs" style="display: none">
-            Play and hold a melody or chord using a MIDI controller or
-            <a href="https://camo.githubusercontent.com/29529110d639ed79a04752c036fe301fd15c961b/68747470733a2f2f7261772e6769746875622e636f6d2f6b796c65737465747a2f617564696f6b6579732f6d61737465722f696d616765732f617564696f6b6579732d6d617070696e672d726f7773322e6a7067"
-              target="_blank">computer keyboard</a>.
-          </div>
-          <!-- <div class="midi-supported-with-inputs" style="display: none">
+
+  <!-- <div class="midi-supported-with-inputs" style="display: none">
             Play and hold a melody or chord using MIDI controller
             <div class="mdc-select mdc-select--theme-light">
               <select id="midi-inputs" class="mdc-select__surface" role="presentation"></select>
@@ -120,21 +80,12 @@
             <a href="https://camo.githubusercontent.com/29529110d639ed79a04752c036fe301fd15c961b/68747470733a2f2f7261772e6769746875622e636f6d2f6b796c65737465747a2f617564696f6b6579732f6d61737465722f696d616765732f617564696f6b6579732d6d617070696e672d726f7773322e6a7067"
               target="_blank">computer keyboard</a>.
           </div> -->
-          <p>A
-            <a href="https://github.com/tensorflow/magenta/tree/master/magenta/models/improv_rnn" target="_blank">neural
-              network</a> will pick up where you left off and it'll keep playing for as long as you hold the keys down.
-          </p>
-        </div>
-      </div>
-      <div class="keyboard" id="keyboard">
-      </div>
-
-      <div class="loading">
-        <div class="spinner-border" role="status">
-        </div>
-        <p>Loading...
-      </div>
+  <div class="loading">
+    <div class="spinner-border" role="status">
     </div>
+    <p>Loading...
+  </div>
+  </div>
   </div>
 
 
