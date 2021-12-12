@@ -6,7 +6,7 @@ html {
 
 .nav-link {
   margin-right: 20px;
-  color: white;
+  color: black;
   white-space: nowrap;
 }
 
@@ -16,6 +16,7 @@ html {
 
 #nav {
   font-size: large;
+  color: black;
 }
 /* 
 body {
@@ -26,4 +27,15 @@ body {
   .text-white {
     color: black !important;
   }
+}
+#nav a {
+  color: black;
+}
+img{
+  height:120px;
+  width: 120px;
+}
+#gitHubQr{
+  padding-bottom: 3em;
+
 }

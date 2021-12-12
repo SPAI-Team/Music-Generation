@@ -152,3 +152,12 @@ body {
    color: #1F37D2;
    background-color: white;
 } */
+
+button a {
+  color:white;
+  text-decoration: none;
+}
+img{
+  height:150px;
+  width: 150px;
+}
