@@ -19,7 +19,7 @@ class OnScreenKeyboard extends EventEmitter {
         console.log("Cleared")
         let nAccidentals = _.range(min_note, max_note + 1).filter(this.isAccidental).length;
         let keyWidth = 100 / (max_note - min_note - nAccidentals + 1);
-        let keyInnerWidth = 100 / (max_note - min_note - nAccidentals + 1) - 0.5;
+        let keyInnerWidth = 100 / (max_note - min_note - nAccidentals + 1) - 0.1;
         let gap = keyWidth - keyInnerWidth;
         let accumulatedWidth = 0;
         let keys = {};
@@ -153,12 +153,13 @@ class Keyboard extends EventEmitter {
     }
 
 
-    keyDown(noteNum, human = true, velocity = 0.7) {
+    keyDown(noteNum, human = true, velocity = 0.4) {
         let freq = Tone.Frequency(noteNum, "midi");
         if (human) {
             let synth = new Tone.Synth(synthConfig).connect(synthFilter);
             synthsPlaying[noteNum] = synth;
             synth.triggerAttack(freq, Tone.now(), velocity);
+            console.log(`Keydown: ${noteNum}`)
         }
         sampler.triggerAttack(freq);
     }
@@ -167,6 +168,7 @@ class Keyboard extends EventEmitter {
         if (synthsPlaying[noteNum]) {
             let synth = synthsPlaying[noteNum];
             synth.triggerRelease();
+            console.log(`Keyup: ${noteNum}`);
             setTimeout(() => {
                 synth.dispose(), 2000;
             });
