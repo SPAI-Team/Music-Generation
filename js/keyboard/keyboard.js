@@ -88,20 +88,6 @@ class OnScreenKeyboard extends EventEmitter {
                 duration: 700, easing: 'ease-out'
             }
         );
-        // if (!human) {
-        //     key.animate(
-        //         [
-        //             {
-        //                 opacity: 0.9
-        //             },
-        //             {
-        //                 opacity: 0
-        //             }
-        //         ], {
-        //         duration: 700, easing: 'ease-out'
-        //     }
-        //     );
-        // }
     }
 }
 
@@ -128,7 +114,6 @@ class Keyboard extends EventEmitter {
         // Configure On Screen Controls
         this._interface = new OnScreenKeyboard(this._container, this.min_note, this.max_note);
         this._interface.on("keyDown", (note, human) => {
-            console.log(`Is Human: ${human}`)
             this.keyDown(note, human);
             this._emitKeyDown(note, human);
         });
@@ -160,7 +145,6 @@ class Keyboard extends EventEmitter {
             let synth = new Tone.Synth(synthConfig).connect(synthFilter);
             synthsPlaying[noteNum] = synth;
             synth.triggerAttack(freq, Tone.now(), velocity);
-            console.log(`Keydown: ${noteNum}`)
         }
         sampler.triggerAttack(freq);
     }
@@ -169,7 +153,6 @@ class Keyboard extends EventEmitter {
         if (synthsPlaying[noteNum]) {
             let synth = synthsPlaying[noteNum];
             synth.triggerRelease();
-            console.log(`Keyup: ${noteNum}`);
             setTimeout(() => {
                 synth.dispose(), 2000;
             });
