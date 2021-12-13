@@ -8,7 +8,6 @@ for (let chord of chords) {
     let filepath = `src/sounds/${chord.replace("#", "s")}.mp3`;
     filemap[chord] = filepath;
 }
-console.log(filemap);
 let sampler = new Tone.Sampler(filemap).toMaster() //.connect(reverb); // sound clips used by the piano
 sampler.release.value = 1;
 let synthFilter = new Tone.Filter(300, 'lowpass').connect(
