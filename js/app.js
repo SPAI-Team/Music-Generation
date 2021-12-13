@@ -1,13 +1,16 @@
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  return new bootstrap.Popover(popoverTriggerEl)
+  return new bootstrap.Popover(popoverTriggerEl, {
+      trigger : "focus"
+  })
 })
+
 
 const keyboard_container = document.querySelector(".keyboard");
 const KEYBOARD = new Keyboard(keyboard_container);
 const AI = new AI_Model();
+
 KEYBOARD.on("keyDown", (note, human) => {
-    console.log(`Is Human? : ${ human }`)
     if (human) {
         AI.keyDown(note);
     }
@@ -26,6 +29,7 @@ KEYBOARD.on("keyUp", (note) => {
     AI.keyUp(note);
     KEYBOARD._interface.keyUp(note);
 });
+
 
 function generateDummySequence() {
     return AI.rnn.continueSequence(

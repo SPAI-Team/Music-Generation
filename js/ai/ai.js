@@ -1,3 +1,4 @@
+
 class AI_Model extends EventEmitter {
     constructor(model_config = "https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv", temperature = 1.1) {
         super();
@@ -7,6 +8,7 @@ class AI_Model extends EventEmitter {
         this.notes = []; // Store keys played in a buffer
         this.running = false;
         this.stopCurrentSequenceGenerator;
+        this.firstTime = false;
     }
 
     buildNoteSequence(seed) {
@@ -100,7 +102,6 @@ class AI_Model extends EventEmitter {
                     setTimeout(this.generateNext, this.generationIntervalTime * 1000);
                 });
         } else {
-            console.log("Here");
             setTimeout(this.generateNext, this.generationIntervalTime * 1000);
         }
     }
@@ -128,7 +129,10 @@ class AI_Model extends EventEmitter {
         setTimeout(generateNext, launchWaitTime * 1000);
         let consumeNext = this.consumeNext.bind(this);
         let consumerId = Tone.Transport.scheduleRepeat(consumeNext, playIntervalTime, Tone.Transport.seconds + launchWaitTime);
-
+        if (!this.firstTime) {
+            this.firstTime = true;
+            document.getElementById("help-text").classList.add("fade")
+        }
         return () => {
             this.running = false;
             Tone.Transport.clear(consumerId);
