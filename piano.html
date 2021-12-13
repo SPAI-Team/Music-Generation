@@ -54,8 +54,8 @@
               </li>
             </ul>
           </div>
-          <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#options">Help & Settings</button>
+          <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#options">Help &
+            Settings</button>
         </div>
       </nav>
 
@@ -67,9 +67,15 @@
     <label for="myRange"></label>
     <input type="range" min="0" max="100" value="1" id="myRange" class="slider">
   </div> -->
-  <h1 class="text-center mt-5 display-3">Project Mugen</h1>
+  <div class="text-center mt-5">
+    <h1 class="display-3">Project Mugen</h1>
+    <p class="text-muted" id="help-text">To begin, press the keys on the Piano. When you hold down the keys, the AI will
+      continue your melody.</p>
+  </div>
+
+
   <div class="container">
-    
+
     <div class="keyboard " id="keyboard"></div>
   </div>
 
@@ -89,19 +95,21 @@
   </div>
 
   <aside class="offcanvas offcanvas-start show" tabindex="-1" id="options" aria-labelledby="options"
-    style="z-index: 9999;"> <!-- z-index set to ensure modal background renders correctly-->
+    style="z-index: 9999;">
+    <!-- z-index set to ensure modal background renders correctly-->
     <div class="offcanvas-header">
-      <h4 class="offcanvas-title">🎹  Project Mugen</h5>
+      <h4 class="offcanvas-title">🎹 Project Mugen</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <p class="lead">Welcome to Project Mugen! To begin, simply press the keys on the Piano. When you start playing, simply hold
+      <p class="lead">Welcome to Project Mugen! To begin, simply press the keys on the Piano. When you start playing,
+        simply hold
         down the keys, and the model will automatically continue your melody!</p>
       <div class="accordion accordion-flush" id="offcanvas-accordion">
         <div class="accordion-item">
           <h5 class="accordion-header"> <button class="accordion-button" type="button" data-bs-toggle="collapse"
               data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              ⌨   Controls 
+              ⌨ Controls
             </button>
           </h5>
           <div class="accordion-collapse collapse show" id="collapseOne" data-bs-parent="#offcanvas-accordion">
@@ -119,31 +127,36 @@
           </div>
         </div>
         <div class="accordion-item">
-          <h5 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-              data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              ⚙  Settings
+          <h5 class="accordion-header"> <button class="accordion-button collapsed" type="button"
+              data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              ⚙ Settings
             </button>
           </h5>
           <div class="accordion-collapse collapse" id="collapseTwo" data-bs-parent="#offcanvas-accordion">
             <div class="accordion-body">
               <form>
                 <div class="mb-3">
-                  <label for="temperature" class="form-label">🌡 Temperature</label> 
-                  <a tabindex="0" href="#"class="text-info text-decoration-none"  role="button" data-bs-trigger="hover click focus" data-bs-toggle="popover" title="🌡 Temperature" data-bs-container="form" data-bs-content="Temperature controls the unpredictability of the AI player. A higher temperature means that the AI will generate more creative outputs, at the cost of some consistency of the output.">ℹ  </a>
+                  <label for="temperature" class="form-label">🌡 Temperature</label>
+                  <a tabindex="0" href="#" class="text-info text-decoration-none" role="button"
+                    data-bs-trigger="hover click focus" data-bs-toggle="popover" title="🌡 Temperature"
+                    data-bs-container="form"
+                    data-bs-content="Temperature controls the unpredictability of the AI player. A higher temperature means that the AI will generate more creative outputs, at the cost of some consistency of the output.">ℹ
+                  </a>
                   <input type="range" class="form-range" id="temperature" min="0" max="5" value="1" step="0.1">
                 </div>
                 <div class="mb-3 form-check ps-0">
                   <input id="show_note" type="checkbox" class="form-checkinput" value="">
-                  <label for="show_note" class="form-check-label">Show Note Names</label> 
+                  <label for="show_note" class="form-check-label">Show Note Names</label>
                 </div>
                 <!-- TODO: Add other options: Themes, Time Til AI Starts Playing, Soundfonts Used etc. -->
               </form>
             </div>
           </div>
           <div class="accordion-item">
-            <h5 class="accordion-header"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapsThreee">
-                👋    Credits 
+            <h5 class="accordion-header"> <button class="accordion-button collapsed" type="button"
+                data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true"
+                aria-controls="collapsThreee">
+                👋 Credits
               </button>
             </h5>
             <div class="accordion-collapse collapse" id="collapseThree" data-bs-parent="#offcanvas-accordion">
@@ -170,7 +183,7 @@
                   <li>Lodash</li>
                   <li>Bootstrap</li>
                 </ul>
-                Implementation inspired by: 
+                Implementation inspired by:
                 <ul>
                   <li>Shared Piano - Chrome Music Lab (Options)</li>
                   <li>AI Duet (Resizable piano)</li>
@@ -181,10 +194,10 @@
           </div>
         </div>
         <div class="mt-3">
-          <a  href="https://github.com/SPAI-Team/Music-Generation">💻 View the source code on GitHub  </a>
+          <a href="https://github.com/SPAI-Team/Music-Generation">💻 View the source code on GitHub </a>
         </div>
         <div class="mt-3">
-          <a  href="https://industry.sp.edu.sg/dsac/spai/">🤖 Learn more about SPAI  </a>
+          <a href="https://industry.sp.edu.sg/dsac/spai/">🤖 Learn more about SPAI </a>
         </div>
       </div>
     </div>
