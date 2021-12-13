@@ -62,7 +62,6 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     keyDown(noteNum, human = true) {
-        console.log(noteNum)
         this._keys[noteNum].classList.add("down");
         this.animatePlay(this._keys[noteNum], noteNum, human);
     }
@@ -72,7 +71,6 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     animatePlay(key, noteNum, human) {
-        console.log(`human: ${human}`)
         let sourceColor = human ? "#1E88E5" : "#E91E63";
         let targetColor = this.isAccidental(noteNum) ? "black" : "white";
         key.animate(

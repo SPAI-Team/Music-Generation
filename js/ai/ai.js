@@ -101,7 +101,6 @@ class AI_Model extends EventEmitter {
                     setTimeout(this.generateNext, this.generationIntervalTime * 1000);
                 });
         } else {
-            console.log("Here");
             setTimeout(this.generateNext, this.generationIntervalTime * 1000);
         }
     }

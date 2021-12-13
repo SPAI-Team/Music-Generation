@@ -7,7 +7,6 @@ const keyboard_container = document.querySelector(".keyboard");
 const KEYBOARD = new Keyboard(keyboard_container);
 const AI = new AI_Model();
 KEYBOARD.on("keyDown", (note, human) => {
-    console.log(`Is Human? : ${ human }`)
     if (human) {
         AI.keyDown(note);
     }
