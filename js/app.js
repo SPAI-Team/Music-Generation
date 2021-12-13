@@ -9,7 +9,7 @@ var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 const keyboard_container = document.querySelector(".keyboard");
 const KEYBOARD = new Keyboard(keyboard_container);
 const AI = new AI_Model();
-const SLIDER = document.getElementById("temperature");
+
 KEYBOARD.on("keyDown", (note, human) => {
     if (human) {
         AI.keyDown(note);
@@ -29,10 +29,6 @@ KEYBOARD.on("keyUp", (note) => {
     AI.keyUp(note);
     KEYBOARD._interface.keyUp(note);
 });
-
-SLIDER.addEventListener("mousemove", function() {
-    AI.temperature = parseFloat(SLIDER.value);
-})
 
 
 function generateDummySequence() {

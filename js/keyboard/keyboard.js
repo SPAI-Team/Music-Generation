@@ -7,7 +7,7 @@ class OnScreenKeyboard extends EventEmitter {
         this.resize(min_note, max_note);
         this._pointedNotes = {};
         this.min_note = min_note;
-
+        this.show_notes = false;
     }
 
     isAccidental(note) {
@@ -37,6 +37,9 @@ class OnScreenKeyboard extends EventEmitter {
             } else {
                 key.style.left = `${accumulatedWidth}%`;
                 key.style.width = `${keyInnerWidth}%`;
+            }
+            if (this.show_notes) {
+                key.innerHTML = `<span>${Tonal.Midi.midiToNoteName(note)}</span>`
             }
             this._container.appendChild(key);
             if (!accidental) {
