@@ -22,7 +22,7 @@ p.C {
 
 .fade {
   opacity: 0;
-  transition: opacity 10s ease-out;
+  transition: opacity 20s ease-out;
 }
 
 .nav {
