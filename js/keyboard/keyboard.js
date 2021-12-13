@@ -1,4 +1,8 @@
 // Event Listeners will be defined in app.js, but will correspond to the method names
+let keypress_colors = {
+    "human" : "#d2292d",
+    "machine" : "#6c63ff"
+}
 class OnScreenKeyboard extends EventEmitter {
     constructor(container, min_note = 48, max_note = 84) {
         super();
@@ -75,7 +79,7 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     animatePlay(key, noteNum, human) {
-        let sourceColor = human ? "#1E88E5" : "#E91E63";
+        let sourceColor = human ? keypress_colors["human"] : keypress_colors["machine"];
         let targetColor = this.isAccidental(noteNum) ? "black" : "white";
         key.animate(
             [
