@@ -86,7 +86,6 @@ class AI_Model extends EventEmitter {
 
     detectChord(notes) {
         notes = notes.map(n => Tonal.Midi.midiToNoteName(n.note));
-        console.log(Tonal.Chord.detect(notes));
         return Tonal.Chord.detect(notes);
     }
     generateNext() { // generates the notes based on the sequence
