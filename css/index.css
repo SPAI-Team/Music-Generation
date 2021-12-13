@@ -11,7 +11,7 @@ body {
   background-color: #1f37d2;
 }
 .bg_height {
-  height: 33em;
+  height: 100vh;
 }
 
 .hr_divider {
@@ -44,27 +44,35 @@ body {
   height: 500px;
   overflow: auto;
 }
-.btn {
+/* .btn {
   border-radius: 0.5rem;
   font-size: 1.2em;
   border: 2px solid white;
-}
+} */
 .vert-container {
   position: relative;
 }
+
+#leftCol {
+  top: 53%;
+}
+
 .vert-center {
   position: absolute;
-  top: 50%;
+  top: 55%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
+
+
 
 #about-section {
   background-color: #eff2f7;
 }
 /*IDs*/
 #project_header {
-  margin-top: 3.6em;
+  /* margin-top: 3.6em; */
   font-weight: "Light 300";
   font-family: "Poppins";
 }
@@ -130,7 +138,7 @@ body {
   margin-left: 3em;
   margin-right: 3em;
   font-size: 1.2em;
-  margin-bottom: 2em;
+  /* margin-bottom: 2em; */
 }
 
 #nav {

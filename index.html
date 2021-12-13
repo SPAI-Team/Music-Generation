@@ -11,13 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-    <link href="./css/index.css" rel="stylesheet" />
-    <title>Project Mugen - A SPAI Project</title>
+    <link href="/css/index.css" rel="stylesheet" />
+    <title>Project Mugen</title>
 </head>
 
 <body>
     <div class="row">
-        <div class="col-sm-6 bg_height">
+        <div class="col-sm-6 bg_height vert-container">
             <!--Navbar-->
             <header>
                 <nav class="navbar navbar-expand-sm navbar-light px-3" id="nav">
@@ -43,29 +43,32 @@
                     </div>
                 </nav>
             </header>
-            <h1 id="project_header" class="intro_text_align">
-                Project Mugen
-            </h1>
-            <p id="project_intro" class="intro_text_align">
-                A project by SPAI students
-            </p>
+            <div class="vert-center" id="leftCol">
+                <h1 id="project_header" class="intro_text_align">
+                    Project Mugen
+                </h1>
+                <p id="project_intro" class="intro_text_align">
+                    Presented by: SPAI
+                </p>
+            </div>
+
         </div>
         <div class="col-sm-6 bg_blue bg_height vert-container">
             <div class="vert-center">
                 <p id="project-desc">
-                    Project Mugen is a machine learning model capable of generating music based music based input. Simply use the midi piano controller to play some notes and our model will generate music for you based on what you have played.
+                    Project Mugen is an AI enabled application that allows you to generate novel music from a virtual piano, developed for Singapore Polytechnic's 2021 Open House.
                 </p>
                 <div class="d-flex justify-content-center mx-auto">
-                    <button type="button" class="btn btn-outline-primary white-button px-4">
-                        <a href='piano.html'>Try it now!</a>
-                    </button>
+                    <a href="piano.html" class="btn btn-light btn-lg">
+                        Try it out
+                    </a>
                 </div>
             </div>
         </div>
 
-        <hr class="hr_divider" />
+        <!-- <hr class="hr_divider" /> -->
 
-        <!--About Section-->
+        <!-- About Section
         <h1 id="about-section-title">About SPAI!</h1>
 
         <section id="about-section">
@@ -112,7 +115,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
             integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
             crossorigin="anonymous"></script>
