@@ -26,6 +26,7 @@ class OnScreenKeyboard extends EventEmitter {
             let accidental = this.isAccidental(note);
             let key = document.createElement("div");
             key.id = note.toString();
+            key.setAttribute("touch-action", "none"); // Prevent user from pinching into the key on touch devices
             key.classList.add("key");
             if (accidental) {
                 key.classList.add("accidental");
@@ -48,13 +49,13 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     _bindKeyEvents(key) { // Add event listeners which will trigger when the key is pressed
-        key.addEventListener("mousedown", (event) => {
+        key.addEventListener("pointerdown", (event) => { // instead of using mousedown, use pointerdown to allow for both mouse and touch controls
             const noteNum = parseInt(event.target.id);
             this.emit("keyDown", noteNum, true); // Emit event 
             this._pointedNotes[noteNum] = true;
             event.preventDefault();
         });
-        key.addEventListener("mouseup", (event) => {
+        key.addEventListener("pointerup", (event) => {
             const noteNum = parseInt(event.target.id);
             this.emit("keyUp", noteNum);
             delete this._pointedNotes[noteNum];
