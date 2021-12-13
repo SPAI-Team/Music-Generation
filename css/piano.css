@@ -7,9 +7,7 @@
   margin-right: 20px;
   color: black;
 }
-/* .navbar-nav {
-  margin-top: 30px;
-} */
+
 .bg-light {
   --bs-bg-opacity: 0;
 }
@@ -134,10 +132,6 @@ a:visited {
 }
 
 
-.navbar-nav {
-  /* margin-top: 10px; */
-}
-
 #nav {
   font-size: large;
 }
@@ -150,6 +144,17 @@ a:visited {
 
 @media screen and (max-height: 600px) {
   .keyboard {
+    height: 40vh;
+  }
+
+}
+
+@media screen and (max-height: 450px) {
+  .keyboard {
     height: 50vh;
+  }
+  h1 {
+    opacity: 0;
+    transition: opacity 0.5s ease-in
   }
 }
