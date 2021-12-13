@@ -92,8 +92,7 @@
           As you play the notes, we record down the notes you play, and feed
           it into the model. Once the model is active, it uses the notes
           played by the user to generate an output of list of probabilities of
-          the next note that is to be played. From there, the note with the
-          highest probability would be selected and played by the AI. It then
+          the next note that is to be played. From there, the AI samples a note from this probability distribution and plays it. It then
           takes the note that it just played and feeds it back into the RNN,
           generating the next note in the sequence.
         </p>
