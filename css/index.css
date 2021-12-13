@@ -27,10 +27,7 @@ body {
   margin-right: 20px;
   color: black;
 }
-.navbar-nav {
-  margin-top: 30px;
-  color: violet;
-}
+
 .bg-light {
   --bs-bg-opacity: 0;
 }
