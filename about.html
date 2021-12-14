@@ -28,13 +28,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link " href="index.html">Home</a>
+              <a class="nav-link text-white" href="index.html">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active " href="about.html">How it Works</a>
+              <a class="nav-link active text-white" href="about.html">How It Works</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="piano.html">Piano</a>
+              <a class="nav-link text-white" href="piano.html">Piano</a>
             </li>
           </ul>
         </div>
@@ -43,75 +43,136 @@
   </header>
 
   <!-- Steps -->
-  <section class="container-fluid mt-2">
-    <h1 class="text-center" style="font-size: xx-large">How it works</h1>
-    <p class="text-center" style="font-size: large">
-      Music Generator explained in 3 steps
-    </p>
-    <div class="px-lg-5 px-md-4 px-sm-3 mx-lg-4 row">
-      <div class="
+  <section class="container p-4 mt-2 bg-white  rounded-3">
+    <div class="row p-4 mb-5 ">
+      <div class="col-12 col-md-5 my-3">
+        <h1 class="display-5">How It Works</h1>
+      </div>
+      <div class="col-12 col-md-7 my-3">
+        <p class="lead text-justify">
+          Interested to know more about the underlying implementation of the project? We answer some of the questions
+          you might have about the project. For a deeper dive, take a look at our source code on GitHub.
+        </p>
+        <a class="btn btn-primary" href="https://github.com/SPAI-Team/Music-Generation">View Source Code</a>
+      </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-xl-3 g-4">
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">What Happens When You Play Our Piano?</h5>
+            <p class="card-text">When you begin playing on the piano, we keep track of the notes you've been playing.
+              This data is represented by a series of numbers that represent information such as the pitch of the note
+              and the time the note was played.
+              When the AI starts playing, this data is fed into the model, which is used to continue the sequence of
+              music.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">How is AI used to play music?</h5>
+            <p class="card-text">The entire system is powered by a Recurrent Neural Network (RNN). An RNN is just a type
+              of neural network that can make predictions
+              based on prior inputs in a sequence provided to it. Hence, when the AI is provided with a sequence of past
+              notes played, it reads in this information, and outputs a list of probabilities for each note,
+              representing the what the model thinks should be played next. We then sample a note based on the
+              probabilities. Typically, the note with the highest probability will be played, but to improve the
+              creativity of the model, we sometimes pick a less likely note.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">How Was This Project Built?</h5>
+            <p class="card-text">The front end user interface of the project was built using HTML and CSS, using
+              Bootstrap 5 as the CSS framework. Tone JS was used to play the sounds made by the piano, and Magenta JS
+              was used to build the RNN model. The model used has been trained on professional piano performances, from
+              the Yamaha e-Piano competition.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- <div class="px-lg-5 px-md-4 px-sm-3 mx-lg-4 row">
+        <div
+          class="
             col-lg-7 col-10
             offset-1 offset-lg-0
             p-4 p-lg-5
             border border-3
             mt-4
             my-3 my-lg-2
-          " style="background-color: #eff2f7; border-radius: 25px">
-        <p class="text-justify">
-          The entire system is powered by a Recurrent Neural Network (RNN). A
-          neural network is an AI model loosely inspired by how our brains
-          work, where the neurons in our brain take in signals and produce
-          responses based on these signals. The neural network is taught by
-          letting it experience multiple training examples. It then evaluates
-          its ability to give the correct output. Finally, it learns from its
-          experience and improves itself.
-        </p>
-      </div>
-      <div class="
+          "
+          style="background-color: #eff2f7; border-radius: 25px"
+        >
+          <p class="text-justify">
+            The entire system is powered by a Recurrent Neural Network (RNN). A
+            neural network is an AI model loosely inspired by how our brains
+            work, where the neurons in our brain take in signals and produce
+            responses based on these signals. The neural network is taught by
+            letting it experience multiple training examples. It then evaluates
+            its ability to give the correct output. Finally, it learns from its
+            experience and improves itself.
+          </p>
+        </div>
+        <div
+          class="
             col-lg-7 col-10
             offset-1 offset-lg-5
             p-4 p-lg-5
             border border-3
             my-3 my-lg-2
-          " style="background-color: #eff2f7; border-radius: 25px">
-        <p class="text-justify">
-          An RNN is just a type of neural network that can make predictions
-          based on prior inputs in a sequence provided to it. More
-          specifically, we trained the RNN to predict the next note in a piano
-          performance, given the information on the past notes that were
-          played by the user. So, what happens when you play our piano?
-        </p>
-      </div>
-      <div class="
+          "
+          style="background-color: #eff2f7; border-radius: 25px"
+        >
+          <p class="text-justify">
+            An RNN is just a type of neural network that can make predictions
+            based on prior inputs in a sequence provided to it. More
+            specifically, we trained the RNN to predict the next note in a piano
+            performance, given the information on the past notes that were
+            played by the user. So, what happens when you play our piano?
+          </p>
+        </div>
+        <div
+          class="
             col-lg-7 col-10
             offset-1 offset-lg-0
             p-4 p-lg-5
             border border-3
             my-3 my-lg-2
-          " style="background-color: #eff2f7; border-radius: 25px">
-        <p class="text-justify">
-          As you play the notes, we record down the notes you play, and feed
-          it into the model. Once the model is active, it uses the notes
-          played by the user to generate an output of list of probabilities of
-          the next note that is to be played. From there, the AI samples a note from this probability distribution and plays it. It then
-          takes the note that it just played and feeds it back into the RNN,
-          generating the next note in the sequence.
-        </p>
-      </div>
-    </div>
-    <p class="text-center py-4">
-      Visit our <a href="https://github.com/SPAI-Team/Music-Generation">Github page</a> to get the full code!
-    </p>
-    <div class ='text-center' id='gitHubQr'>
-      <figure >
-        <img src='src/githubQr.png'>
-        <figcaption>Scan this qr code to visit our github link</figcaption>
-      </figure>
-      <figure >
-        <img src='src/spaiPageQr.png'>
-        <figcaption>Scan this qr code to visit our spai page</figcaption>
-      </figure>
-    </div>
+          "
+          style="background-color: #eff2f7; border-radius: 25px"
+        >
+          <p class="text-justify">
+            As you play the notes, we record down the notes you play, and feed
+            it into the model. Once the model is active, it uses the notes
+            played by the user to generate an output of list of probabilities of
+            the next note that is to be played. From there, the AI samples a
+            note from this probability distribution and plays it. It then takes
+            the note that it just played and feeds it back into the RNN,
+            generating the next note in the sequence.
+          </p>
+        </div>
+      </div> -->
+    <!-- <p class="text-center py-4">
+        Visit our
+        <a href="https://github.com/SPAI-Team/Music-Generation">GitHub page</a>
+        to get the full code!
+      </p>
+      <div class="text-center" id="gitHubQr">
+        <figure>
+          <img src="src/githubQr.png" />
+          <figcaption>Scan this qr code to visit our github link</figcaption>
+        </figure>
+        <figure>
+          <img src="src/spaiPageQr.png" />
+          <figcaption>Scan this qr code to visit our spai page</figcaption>
+        </figure>
+      </div> -->
   </section>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"

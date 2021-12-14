@@ -1,8 +1,8 @@
 // Event Listeners will be defined in app.js, but will correspond to the method names
 let keypress_colors = {
-    "human" : "#d2292d",
-    "machine" : "#6c63ff"
-}
+    "human": "#d2292d",
+    "machine": "#6c63ff"
+};
 class OnScreenKeyboard extends EventEmitter {
     constructor(container, min_note = 48, max_note = 84) {
         super();
@@ -11,7 +11,43 @@ class OnScreenKeyboard extends EventEmitter {
         this.resize(min_note, max_note);
         this._pointedNotes = {};
         this.min_note = min_note;
+        this.max_note = max_note;
         this.show_notes = false;
+        this.show_bindings = true;
+        this.key_bindings = {
+            60: "Z",
+            61: "S",
+            62: "X",
+            63: "D",
+            64: "C",
+            65: "V",
+            66: "G",
+            67: "B",
+            68: "H",
+            69: "N",
+            70: "J",
+            71: "M",
+            72: "Q",
+            73: "L",
+            74: "W",
+            75: "3",
+            76: "E",
+            77: "R",
+            78: "5",
+            79: "T",
+            80: "6",
+            81: "Y",
+            82: "7",
+            83: "U",
+            84: "I",
+            85: "9",
+            86: "O",
+            87: "0",
+            88: "P",
+            89: "[",
+            90: "=",
+            91: "]"
+        };
     }
 
     isAccidental(note) {
@@ -19,6 +55,8 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     resize(min_note, max_note) {
+        this.min_note = min_note;
+        this.max_note = max_note;
         this._container.innerHTML = ""; // clear previous keyboard
         let nAccidentals = _.range(min_note, max_note + 1).filter(this.isAccidental).length;
         let keyWidth = 100 / (max_note - min_note - nAccidentals + 1);
@@ -42,9 +80,17 @@ class OnScreenKeyboard extends EventEmitter {
                 key.style.left = `${accumulatedWidth}%`;
                 key.style.width = `${keyInnerWidth}%`;
             }
-            if (this.show_notes) {
-                key.innerHTML = `<span>${Tonal.Midi.midiToNoteName(note)}</span>`
+            if (this.show_bindings && this.show_notes) {
+                let binding = this.key_bindings[note] ?? "";
+                key.innerHTML = `<span class="user-select-none"><strong>${binding}</strong> (${Tonal.Midi.midiToNoteName(note)})</span>`;
             }
+            else if (this.show_notes) {
+                key.innerHTML = `<span class="user-select-none">${Tonal.Midi.midiToNoteName(note)}</span>`;
+            } else if (this.show_bindings) {
+                let binding = this.key_bindings[note] ?? "";
+                key.innerHTML = `<span class="user-select-none"><strong>${binding}</strong></span>`;
+            }
+
             this._container.appendChild(key);
             if (!accidental) {
                 accumulatedWidth += keyWidth;
@@ -70,11 +116,17 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     keyDown(noteNum, human = true) {
+        if (noteNum < this.min_note || noteNum > this.max_note) {
+            return;
+        }
         this._keys[noteNum].classList.add("down");
         this.animatePlay(this._keys[noteNum], noteNum, human);
     }
 
     keyUp(noteNum) {
+        if (noteNum < this.min_note || noteNum > this.max_note) {
+            return;
+        }
         this._keys[noteNum].classList.remove("down");
     }
 
@@ -116,7 +168,7 @@ class Keyboard extends EventEmitter {
             this._emitKeyUp(event.note);
         });
         this.min_note = 48;
-        this.max_note = 84;
+        this.max_note = 83;
         // Configure On Screen Controls
         this._interface = new OnScreenKeyboard(this._container, this.min_note, this.max_note);
         this._interface.on("keyDown", (note, human) => {
@@ -129,10 +181,12 @@ class Keyboard extends EventEmitter {
         });
         window.addEventListener("resize", this._resize.bind(this));
         this._resize(); // Set initial size
-
-
-        // TODO: Configure MIDI Input Controls (Not top priority since MIDI controller not available atm)
-
+        // Configure MIDI Controls
+        this.midi = false;
+        WebMidi.enable().then(this.midi_enabled).catch((err) => {
+            console.error(err);
+            this.midi = false;
+        });
 
     }
 
@@ -169,7 +223,29 @@ class Keyboard extends EventEmitter {
     _resize() {
         let keyWidth = 30;
         let octaves = Math.round((window.innerWidth / keyWidth) / 12);
-        this.max_note = this.min_note + (octaves * 12);
+        this.max_note = Math.min(this.min_note + (octaves * 12), 83); // ImprovRNN can only handle up to 5 octaves
         this._interface.resize(this.min_note, this.max_note);
+    }
+
+    midi_enabled() {
+        if (WebMidi.inputs.length >= 1) {
+            // MIDI Device Found
+            WebMidi.inputs.forEach((input) => {
+                input.addListener("noteon", e => {
+                    this.keyDown(e.note.number);
+                    this._emitKeyDown(e.note.number);
+                });
+                input.addListener("noteoff", e => {
+                    this.keyUp(e.note.number);
+                    this._emitKeyUp(e.note.number);
+                });
+                WebMidi.addListener("disconnected", device => {
+                    if (device.input) {
+                        device.input.removeListener("noteon");
+                        device.input.removeListener("noteoff");
+                    }
+                });
+            });
+        }
     }
 }

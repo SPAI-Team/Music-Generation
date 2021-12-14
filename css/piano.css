@@ -7,9 +7,7 @@
   margin-right: 20px;
   color: black;
 }
-.navbar-nav {
-  margin-top: 30px;
-}
+
 .bg-light {
   --bs-bg-opacity: 0;
 }
@@ -22,9 +20,9 @@ p.C {
 }
 
 
-.fade {
-  opacity: 0;
-  transition: opacity 10s ease-out;
+#help-text.fade {
+  /* opacity: 0; */
+  transition: opacity 20s ease-out;
 }
 
 .nav {
@@ -114,7 +112,8 @@ a:visited {
 .key > span {
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
+  left: 10%;
   font-size: 0.7em;
   color: black;
 }
@@ -123,16 +122,20 @@ a:visited {
   color: white;
 }
 
-.key:hover {
-  background-color: rgb(202, 202, 202);
-  transition: background-color 0.1s ease-in;
-  cursor: pointer;
+
+
+@media(hover:hover) { /* Disable hover on touch devices */
+  .key:hover {
+    background-color: rgb(202, 202, 202);
+    transition: background-color 0.1s ease-in;
+    cursor: pointer;
+  }
+  .key.accidental:hover {
+    background-color: rgb(41, 41, 41);
+    transition: background-color 0.1s ease-in;
+  }
 }
 
-.key.accidental:hover {
-  background-color: rgb(41, 41, 41);
-  transition: background-color 0.1s ease-in;
-}
 .loading {
   position: absolute;
   left: 0;
@@ -146,10 +149,6 @@ a:visited {
 }
 
 
-.navbar-nav {
-  margin-top: 10px;
-}
-
 #nav {
   font-size: large;
 }
@@ -162,6 +161,17 @@ a:visited {
 
 @media screen and (max-height: 600px) {
   .keyboard {
+    height: 40vh;
+  }
+
+}
+
+@media screen and (max-height: 450px) {
+  .keyboard {
     height: 50vh;
+  }
+  h1 {
+    opacity: 0;
+    transition: opacity 0.5s ease-in
   }
 }
