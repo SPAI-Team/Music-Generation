@@ -43,7 +43,7 @@ class OnScreenKeyboard extends EventEmitter {
                 key.style.width = `${keyInnerWidth}%`;
             }
             if (this.show_notes) {
-                key.innerHTML = `<span>${Tonal.Midi.midiToNoteName(note)}</span>`
+                key.innerHTML = `<span class="user-select-none">${Tonal.Midi.midiToNoteName(note)}</span>`
             }
             this._container.appendChild(key);
             if (!accidental) {
