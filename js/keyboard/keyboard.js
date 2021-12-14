@@ -182,10 +182,12 @@ class Keyboard extends EventEmitter {
         });
         window.addEventListener("resize", this._resize.bind(this));
         this._resize(); // Set initial size
-
-
-        // TODO: Configure MIDI Input Controls (Not top priority since MIDI controller not available atm)
-
+        // Configure MIDI Controls
+        this.midi = false;
+        WebMidi.enable().then(this.midi_enabled).catch((err) => {
+            console.error(err);
+            this.midi = false;
+        });
 
     }
 
@@ -224,5 +226,27 @@ class Keyboard extends EventEmitter {
         let octaves = Math.round((window.innerWidth / keyWidth) / 12);
         this.max_note = Math.min(this.min_note + (octaves * 12), 83); // ImprovRNN can only handle up to 5 octaves
         this._interface.resize(this.min_note, this.max_note);
+    }
+
+    midi_enabled() {
+        if (WebMidi.inputs.length >= 1) {
+            // MIDI Device Found
+            WebMidi.inputs.forEach((input) => {
+                input.addListener("noteon", e => {
+                    this.keyDown(e.note.number);
+                    this._emitKeyDown(e.note.number);
+                });
+                input.addListener("noteoff", e => {
+                    this.keyUp(e.note.number);
+                    this._emitKeyUp(e.note.number);
+                });
+                WebMidi.addListener("disconnected", device => {
+                    if (device.input) {
+                        device.input.removeListener("noteon");
+                        device.input.removeListener("noteoff");
+                    }
+                });
+            });
+        }
     }
 }
