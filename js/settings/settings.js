@@ -1,3 +1,10 @@
+const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]')); // Enable popover text
+const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    console.log(popoverTriggerEl)
+    return new bootstrap.Popover(popoverTriggerEl);
+});
+
+
 const SETTINGS = document.getElementById("settings");
 const SLIDER = document.getElementById("temperature");
 const SHOW_NOTES = document.getElementById("show_note");

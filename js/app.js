@@ -1,9 +1,3 @@
-var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-    console.log(popoverTriggerEl)
-    return new bootstrap.Popover(popoverTriggerEl);
-});
-
 const keyboard_container = document.querySelector(".keyboard");
 const KEYBOARD = new Keyboard(keyboard_container);
 const AI = new AI_Model();
