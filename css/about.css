@@ -49,3 +49,9 @@ figure:nth-child(2){
     margin-left: 0em;
   }
 }
+
+.card:hover {
+  background-color: #6c63ff;
+  color: white;
+  transition: 0.5s;
+} 
