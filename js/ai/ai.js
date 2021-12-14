@@ -1,6 +1,6 @@
 
 class AI_Model extends EventEmitter {
-    constructor(model_config = "https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv", temperature = 1.0, max_sequence_length = 10, drop_prob = 0.3, launchWaitTime = 0.1) {
+    constructor(model_config = "https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv", temperature = 1.0, max_sequence_length = 10, drop_prob = 0.3, launchWaitTime = 0.5, steps = 20) {
         super();
         this.temperature = temperature;
         this.model_config = model_config;
@@ -12,6 +12,7 @@ class AI_Model extends EventEmitter {
         this.max_sequence_length = max_sequence_length;
         this.drop_prob = drop_prob;
         this.launchWaitTime = launchWaitTime;
+        this.steps = steps; // How many steps to predict in the future
     }
 
     buildNoteSequence(seed) {
@@ -97,7 +98,7 @@ class AI_Model extends EventEmitter {
         if (!this.running) return;
         if (this.generatedSequence.length < this.max_sequence_length) {
             this.lastGenerationTask = this.rnn
-                .continueSequence(this.noteSeq, 20, this.temperature, [this.chord]) // continues a provided quantized NoteSequence
+                .continueSequence(this.noteSeq, this.steps, this.temperature, [this.chord]) // continues a provided quantized NoteSequence
                 .then(genSeq => {
                     this.generatedSequence = this.generatedSequence.concat(
                         genSeq.notes.map(n => n.pitch)
@@ -132,7 +133,7 @@ class AI_Model extends EventEmitter {
         let generateNext = this.generateNext.bind(this); // do a bind to ensure the function is able to access the parent class
         setTimeout(generateNext, launchWaitTime * 1000);
         let consumeNext = this.consumeNext.bind(this);
-        let consumerId = Tone.Transport.scheduleRepeat(consumeNext, playIntervalTime, Tone.Transport.seconds + launchWaitTime);
+        let consumerId = Tone.Transport.scheduleRepeat(consumeNext, playIntervalTime, Tone.Transport.seconds + launchWaitTime); // (callback, interval, starttime, duration = infinity)
         if (!this.firstTime) {
             this.firstTime = true;
             document.getElementById("help-text").classList.add("fade");
