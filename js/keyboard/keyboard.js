@@ -13,6 +13,41 @@ class OnScreenKeyboard extends EventEmitter {
         this.min_note = min_note;
         this.max_note = max_note;
         this.show_notes = false;
+        this.show_bindings = true;
+        this.key_bindings = {
+            60: "Z",
+            61: "S",
+            62: "X",
+            63: "D",
+            64: "C",
+            65: "V",
+            66: "G",
+            67: "B",
+            68: "H",
+            69: "N",
+            70: "J",
+            71: "M",
+            72: ",",
+            73: "L",
+            74: ".",
+            75: "3",
+            76: "E",
+            77: "R",
+            78: "5",
+            79: "T",
+            80: "6",
+            81: "Y",
+            82: "7",
+            83: "U",
+            84: "I",
+            85: "9",
+            86: "O",
+            87: "0",
+            88: "P",
+            89: "[",
+            90: "=",
+            91: "]"
+        };
     }
 
     isAccidental(note) {
@@ -45,9 +80,18 @@ class OnScreenKeyboard extends EventEmitter {
                 key.style.left = `${accumulatedWidth}%`;
                 key.style.width = `${keyInnerWidth}%`;
             }
-            if (this.show_notes) {
-                key.innerHTML = `<span class="user-select-none">${Tonal.Midi.midiToNoteName(note)}</span>`;
+            if (this.show_bindings && this.show_notes) {
+                let binding = this.key_bindings[note] ?? "";
+                console.log(binding);
+                key.innerHTML = `<span class="user-select-none"><strong>${binding}</strong> (${Tonal.Midi.midiToNoteName(note)})</span>`;
             }
+            else if (this.show_notes) {
+                key.innerHTML = `<span class="user-select-none">${Tonal.Midi.midiToNoteName(note)}</span>`;
+            } else if (this.show_bindings) {
+                let binding = this.key_bindings[note] ?? "";
+                key.innerHTML = `<span class="user-select-none"><strong>${binding}</strong></span>`;
+            }
+
             this._container.appendChild(key);
             if (!accidental) {
                 accumulatedWidth += keyWidth;
