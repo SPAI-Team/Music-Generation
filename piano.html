@@ -125,6 +125,24 @@
                   </a>
                   <input type="range" class="form-range" id="temperature" min="0" max="2" value="1" step="0.05">
                 </div>
+                <div class="mb-3">
+                  <label for="steps" class="form-label">👣 AI Output Steps</label>
+                  <a tabindex="0" href="#" class="text-info text-decoration-none" role="button"
+                    data-bs-trigger="focus hover" data-bs-toggle="popover" title="👣 AI Output Steps"
+                    data-bs-container="form div"
+                    data-bs-content="The number of output steps determines the maximum amount of steps the AI will continue your initial melody for. As the number of steps increases, the output of the model may become more inconsistent as the model starts to 'forget' about what it has played thus far.">ℹ
+                  </a>
+                  <input type="range" class="form-range" id="steps" min="1" max="100" value="20" step="1">
+                </div>
+                <div class="mb-3">
+                  <label for="start_time" class="form-label">⏲ Start AI Generation Delay</label>
+                  <a tabindex="0" href="#" class="text-info text-decoration-none" role="button"
+                    data-bs-trigger="focus hover" data-bs-toggle="popover" title="⏲ Start AI Generation Delay"
+                    data-bs-container="form div"
+                    data-bs-content="This setting determines how long one has to hold down the keys before the AI begins to generate its output. If you feel the AI is taking too long to activate, reduce this setting. If you find yourself unable to play before getting interupted by the AI, increase this setting.">ℹ
+                  </a>
+                  <input type="range" class="form-range" id="start_time" min="0.1" max="20" value="0.5" step="0.1">
+                </div>
                 <div class="mb-3 form-check ps-0">
                   <input id="show_bindings" type="checkbox" class="form-checkinput" value="" checked>
                   <label for="show_bindings" class="form-check-label">Show Key Bindings</label>
