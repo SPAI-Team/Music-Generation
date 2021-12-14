@@ -27,9 +27,9 @@ class OnScreenKeyboard extends EventEmitter {
             69: "N",
             70: "J",
             71: "M",
-            72: ",",
+            72: "Q",
             73: "L",
-            74: ".",
+            74: "W",
             75: "3",
             76: "E",
             77: "R",
@@ -82,7 +82,6 @@ class OnScreenKeyboard extends EventEmitter {
             }
             if (this.show_bindings && this.show_notes) {
                 let binding = this.key_bindings[note] ?? "";
-                console.log(binding);
                 key.innerHTML = `<span class="user-select-none"><strong>${binding}</strong> (${Tonal.Midi.midiToNoteName(note)})</span>`;
             }
             else if (this.show_notes) {
