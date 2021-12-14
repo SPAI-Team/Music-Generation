@@ -121,16 +121,20 @@ a:visited {
   color: white;
 }
 
-.key:hover {
-  background-color: rgb(202, 202, 202);
-  transition: background-color 0.1s ease-in;
-  cursor: pointer;
+
+
+@media(hover:hover) { /* Disable hover on touch devices */
+  .key:hover {
+    background-color: rgb(202, 202, 202);
+    transition: background-color 0.1s ease-in;
+    cursor: pointer;
+  }
+  .key.accidental:hover {
+    background-color: rgb(41, 41, 41);
+    transition: background-color 0.1s ease-in;
+  }
 }
 
-.key.accidental:hover {
-  background-color: rgb(41, 41, 41);
-  transition: background-color 0.1s ease-in;
-}
 .loading {
   position: absolute;
   left: 0;
