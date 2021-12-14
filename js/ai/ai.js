@@ -1,6 +1,6 @@
 
 class AI_Model extends EventEmitter {
-    constructor(model_config = "https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv", temperature = 1.0, max_sequence_length = 10, drop_prob = 0.3) {
+    constructor(model_config = "https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv", temperature = 1.0, max_sequence_length = 10, drop_prob = 0.3, launchWaitTime = 0.1) {
         super();
         this.temperature = temperature;
         this.model_config = model_config;
@@ -11,6 +11,7 @@ class AI_Model extends EventEmitter {
         this.firstTime = false;
         this.max_sequence_length = max_sequence_length;
         this.drop_prob = drop_prob;
+        this.launchWaitTime = launchWaitTime;
     }
 
     buildNoteSequence(seed) {
@@ -81,7 +82,7 @@ class AI_Model extends EventEmitter {
 
     getSequenceLaunchWaitTime(notes) {
         if (notes.length <= 1) {
-            return 1;
+            return this.launchWaitTime;
         }
         let intervals = this.getKeyIntervals(notes);
         let maxInterval = _.max(intervals);
@@ -125,6 +126,7 @@ class AI_Model extends EventEmitter {
         this.noteSeq = this.buildNoteSequence(notes);
         this.generatedSequence = Math.random() < (1 - this.drop_prob) ? _.clone(this.noteSeq.notes.map(n => n.pitch)) : [];
         let launchWaitTime = this.getSequenceLaunchWaitTime(notes);
+        console.log(launchWaitTime);
         let playIntervalTime = this.getSequencePlayIntervalTime(notes);
         this.generationIntervalTime = playIntervalTime / 2;
         let generateNext = this.generateNext.bind(this); // do a bind to ensure the function is able to access the parent class
