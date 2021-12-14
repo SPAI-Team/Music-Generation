@@ -125,7 +125,7 @@ class AI_Model extends EventEmitter {
         let launchWaitTime = this.getSequenceLaunchWaitTime(notes);
         let playIntervalTime = this.getSequencePlayIntervalTime(notes);
         this.generationIntervalTime = playIntervalTime / 2;
-        let generateNext = this.generateNext.bind(this);
+        let generateNext = this.generateNext.bind(this); // do a bind to ensure the function is able to access the parent class
         setTimeout(generateNext, launchWaitTime * 1000);
         let consumeNext = this.consumeNext.bind(this);
         let consumerId = Tone.Transport.scheduleRepeat(consumeNext, playIntervalTime, Tone.Transport.seconds + launchWaitTime);
