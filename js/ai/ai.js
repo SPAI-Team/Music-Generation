@@ -1,6 +1,6 @@
 
 class AI_Model extends EventEmitter {
-    constructor(model_config = "https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv", temperature = 1.1) {
+    constructor(model_config = "https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv", temperature = 1.0) {
         super();
         this.temperature = temperature;
         this.model_config = model_config;
