@@ -1,6 +1,5 @@
 const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]')); // Enable popover text
 const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-    console.log(popoverTriggerEl)
     return new bootstrap.Popover(popoverTriggerEl);
 });
 
@@ -23,6 +22,12 @@ const show_bindings_func = (event) => {
     KEYBOARD._resize();
 };
 
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+    SHOW_BINDINGS.checked = false;
+    KEYBOARD._interface.show_bindings = false;
+    KEYBOARD._resize();
+}
+
 
 const reset = () => {
     slider_func();
@@ -30,9 +35,6 @@ const reset = () => {
     KEYBOARD._resize();
 }
 
-const test = () => {
-    console.log("yeet");
-};
 
 SLIDER.onchange = slider_func;
 SHOW_NOTES.onchange = show_notes_func;
