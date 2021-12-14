@@ -1,8 +1,8 @@
 // Event Listeners will be defined in app.js, but will correspond to the method names
 let keypress_colors = {
-    "human" : "#d2292d",
-    "machine" : "#6c63ff"
-}
+    "human": "#d2292d",
+    "machine": "#6c63ff"
+};
 class OnScreenKeyboard extends EventEmitter {
     constructor(container, min_note = 48, max_note = 84) {
         super();
@@ -11,6 +11,7 @@ class OnScreenKeyboard extends EventEmitter {
         this.resize(min_note, max_note);
         this._pointedNotes = {};
         this.min_note = min_note;
+        this.max_note = max_note;
         this.show_notes = false;
     }
 
@@ -19,6 +20,8 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     resize(min_note, max_note) {
+        this.min_note = min_note;
+        this.max_note = max_note;
         this._container.innerHTML = ""; // clear previous keyboard
         let nAccidentals = _.range(min_note, max_note + 1).filter(this.isAccidental).length;
         let keyWidth = 100 / (max_note - min_note - nAccidentals + 1);
@@ -43,7 +46,7 @@ class OnScreenKeyboard extends EventEmitter {
                 key.style.width = `${keyInnerWidth}%`;
             }
             if (this.show_notes) {
-                key.innerHTML = `<span class="user-select-none">${Tonal.Midi.midiToNoteName(note)}</span>`
+                key.innerHTML = `<span class="user-select-none">${Tonal.Midi.midiToNoteName(note)}</span>`;
             }
             this._container.appendChild(key);
             if (!accidental) {
@@ -70,11 +73,17 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     keyDown(noteNum, human = true) {
+        if (noteNum < this.min_note || noteNum > this.max_note) {
+            return;
+        }
         this._keys[noteNum].classList.add("down");
         this.animatePlay(this._keys[noteNum], noteNum, human);
     }
 
     keyUp(noteNum) {
+        if (noteNum < this.min_note || noteNum > this.max_note) {
+            return;
+        }
         this._keys[noteNum].classList.remove("down");
     }
 
@@ -116,7 +125,7 @@ class Keyboard extends EventEmitter {
             this._emitKeyUp(event.note);
         });
         this.min_note = 48;
-        this.max_note = 84;
+        this.max_note = 83;
         // Configure On Screen Controls
         this._interface = new OnScreenKeyboard(this._container, this.min_note, this.max_note);
         this._interface.on("keyDown", (note, human) => {
@@ -169,7 +178,7 @@ class Keyboard extends EventEmitter {
     _resize() {
         let keyWidth = 30;
         let octaves = Math.round((window.innerWidth / keyWidth) / 12);
-        this.max_note = this.min_note + (octaves * 12);
+        this.max_note = Math.min(this.min_note + (octaves * 12), 83); // ImprovRNN can only handle up to 5 octaves
         this._interface.resize(this.min_note, this.max_note);
     }
 }
