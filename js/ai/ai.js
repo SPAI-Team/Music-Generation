@@ -127,7 +127,6 @@ class AI_Model extends EventEmitter {
         this.noteSeq = this.buildNoteSequence(notes);
         this.generatedSequence = Math.random() < (1 - this.drop_prob) ? _.clone(this.noteSeq.notes.map(n => n.pitch)) : [];
         let launchWaitTime = this.getSequenceLaunchWaitTime(notes);
-        console.log(launchWaitTime);
         let playIntervalTime = this.getSequencePlayIntervalTime(notes);
         this.generationIntervalTime = playIntervalTime / 2;
         let generateNext = this.generateNext.bind(this); // do a bind to ensure the function is able to access the parent class
