@@ -1,4 +1,8 @@
 // Event Listeners will be defined in app.js, but will correspond to the method names
+let keypress_colors = {
+    "human" : "#d2292d",
+    "machine" : "#6c63ff"
+}
 class OnScreenKeyboard extends EventEmitter {
     constructor(container, min_note = 48, max_note = 84) {
         super();
@@ -7,7 +11,7 @@ class OnScreenKeyboard extends EventEmitter {
         this.resize(min_note, max_note);
         this._pointedNotes = {};
         this.min_note = min_note;
-
+        this.show_notes = false;
     }
 
     isAccidental(note) {
@@ -26,6 +30,7 @@ class OnScreenKeyboard extends EventEmitter {
             let accidental = this.isAccidental(note);
             let key = document.createElement("div");
             key.id = note.toString();
+            key.setAttribute("touch-action", "none"); // Prevent user from pinching into the key on touch devices
             key.classList.add("key");
             if (accidental) {
                 key.classList.add("accidental");
@@ -36,6 +41,9 @@ class OnScreenKeyboard extends EventEmitter {
             } else {
                 key.style.left = `${accumulatedWidth}%`;
                 key.style.width = `${keyInnerWidth}%`;
+            }
+            if (this.show_notes) {
+                key.innerHTML = `<span>${Tonal.Midi.midiToNoteName(note)}</span>`
             }
             this._container.appendChild(key);
             if (!accidental) {
@@ -48,13 +56,13 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     _bindKeyEvents(key) { // Add event listeners which will trigger when the key is pressed
-        key.addEventListener("mousedown", (event) => {
+        key.addEventListener("pointerdown", (event) => { // instead of using mousedown, use pointerdown to allow for both mouse and touch controls
             const noteNum = parseInt(event.target.id);
             this.emit("keyDown", noteNum, true); // Emit event 
             this._pointedNotes[noteNum] = true;
             event.preventDefault();
         });
-        key.addEventListener("mouseup", (event) => {
+        key.addEventListener("pointerup", (event) => {
             const noteNum = parseInt(event.target.id);
             this.emit("keyUp", noteNum);
             delete this._pointedNotes[noteNum];
@@ -62,7 +70,6 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     keyDown(noteNum, human = true) {
-        console.log(noteNum)
         this._keys[noteNum].classList.add("down");
         this.animatePlay(this._keys[noteNum], noteNum, human);
     }
@@ -72,8 +79,7 @@ class OnScreenKeyboard extends EventEmitter {
     }
 
     animatePlay(key, noteNum, human) {
-        console.log(`human: ${human}`)
-        let sourceColor = human ? "#1E88E5" : "#E91E63";
+        let sourceColor = human ? keypress_colors["human"] : keypress_colors["machine"];
         let targetColor = this.isAccidental(noteNum) ? "black" : "white";
         key.animate(
             [

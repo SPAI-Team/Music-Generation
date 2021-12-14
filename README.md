@@ -1,5 +1,5 @@
-# Project Pianist
-Project Pianist is an AI enabled application that allows you to generate novel music from a virtual piano, developed for Singapore Polytechnic's 2021 Open House.
+# Project Mugen
+Project Mugen is an AI enabled application that allows you to generate novel music from a virtual piano, developed for Singapore Polytechnic's 2021 Open House.
 
 ## Libraries Used
 - Magenta JS
