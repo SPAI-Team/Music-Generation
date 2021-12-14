@@ -24,3 +24,4 @@ SLIDER.onchange = slider_func;
 SHOW_NOTES.onchange = show_notes_func;
 
 SETTINGS.onreset = reset
+

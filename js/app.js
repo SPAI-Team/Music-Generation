@@ -1,10 +1,8 @@
-var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  return new bootstrap.Popover(popoverTriggerEl, {
-      trigger : "focus"
-  })
-})
-
+    console.log(popoverTriggerEl)
+    return new bootstrap.Popover(popoverTriggerEl);
+});
 
 const keyboard_container = document.querySelector(".keyboard");
 const KEYBOARD = new Keyboard(keyboard_container);
@@ -20,11 +18,11 @@ KEYBOARD.on("keyDown", (note, human) => {
 AI.on("keyDown", (note, human) => {
     KEYBOARD._interface.keyDown(note, human);
     KEYBOARD.keyDown(note, human);
-})
+});
 
 AI.on("keyUp", (note) => {
     KEYBOARD.keyUp(note);
-})
+});
 KEYBOARD.on("keyUp", (note) => {
     AI.keyUp(note);
     KEYBOARD._interface.keyUp(note);

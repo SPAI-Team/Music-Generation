@@ -20,8 +20,8 @@ p.C {
 }
 
 
-.fade {
-  opacity: 0;
+#help-text.fade {
+  /* opacity: 0; */
   transition: opacity 20s ease-out;
 }
 
