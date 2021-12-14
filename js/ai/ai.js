@@ -1,6 +1,6 @@
 
 class AI_Model extends EventEmitter {
-    constructor(model_config = "https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv", temperature = 1.0) {
+    constructor(model_config = "https://storage.googleapis.com/download.magenta.tensorflow.org/tfjs_checkpoints/music_rnn/chord_pitches_improv", temperature = 1.0, max_sequence_length = 10, drop_prob = 0.3) {
         super();
         this.temperature = temperature;
         this.model_config = model_config;
@@ -9,6 +9,8 @@ class AI_Model extends EventEmitter {
         this.running = false;
         this.stopCurrentSequenceGenerator;
         this.firstTime = false;
+        this.max_sequence_length = max_sequence_length;
+        this.drop_prob = drop_prob;
     }
 
     buildNoteSequence(seed) {
@@ -92,7 +94,7 @@ class AI_Model extends EventEmitter {
     }
     generateNext() { // generates the notes based on the sequence
         if (!this.running) return;
-        if (this.generatedSequence.length < 10) {
+        if (this.generatedSequence.length < this.max_sequence_length) {
             this.lastGenerationTask = this.rnn
                 .continueSequence(this.noteSeq, 20, this.temperature, [this.chord]) // continues a provided quantized NoteSequence
                 .then(genSeq => {
@@ -106,12 +108,12 @@ class AI_Model extends EventEmitter {
         }
     }
 
-    consumeNext(time) {
+    consumeNext() {
         if (this.generatedSequence.length) {
             let note = this.generatedSequence.shift(); // .shift() removes the first element from an array and returns that removed element
             if (note > 0) {
                 this.emit("keyDown", note, false); // set human=false 
-                this.emit("keyUp", note)
+                this.emit("keyUp", note);
             }
         }
     }
@@ -121,7 +123,7 @@ class AI_Model extends EventEmitter {
         this.chord = this.detectChord(notes);
         this.chord = _.first(this.chord) || "CM";
         this.noteSeq = this.buildNoteSequence(notes);
-        this.generatedSequence = Math.random() < 0.7 ? _.clone(this.noteSeq.notes.map(n => n.pitch)) : [];
+        this.generatedSequence = Math.random() < (1 - this.drop_prob) ? _.clone(this.noteSeq.notes.map(n => n.pitch)) : [];
         let launchWaitTime = this.getSequenceLaunchWaitTime(notes);
         let playIntervalTime = this.getSequencePlayIntervalTime(notes);
         this.generationIntervalTime = playIntervalTime / 2;
@@ -131,7 +133,7 @@ class AI_Model extends EventEmitter {
         let consumerId = Tone.Transport.scheduleRepeat(consumeNext, playIntervalTime, Tone.Transport.seconds + launchWaitTime);
         if (!this.firstTime) {
             this.firstTime = true;
-            document.getElementById("help-text").classList.add("fade")
+            document.getElementById("help-text").classList.add("fade");
         }
         return () => {
             this.running = false;
