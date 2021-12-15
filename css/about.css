@@ -20,6 +20,10 @@ body {
   background-position: top left, top right, 0% 60%, 100% 100%;
 } */
 
+
+#nav a {
+color : black;
+}
 @media only screen and (max-width: 768px) {
   .text-white {
     color: black !important;
