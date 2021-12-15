@@ -5,11 +5,22 @@ const popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
 
 
 const SETTINGS = document.getElementById("settings");
+const INSTRUMENT = document.getElementById("instrument");
 const TEMP_SLIDER = document.getElementById("temperature");
 const STEP_SLIDER = document.getElementById("steps");
 const TIMER_SLIDER = document.getElementById("start_time");
 const SHOW_NOTES = document.getElementById("show_note");
 const SHOW_BINDINGS = document.getElementById("show_bindings");
+
+const instrument_change_func = () => {
+    instrument = SampleLibrary.load({
+        instruments: INSTRUMENT.value,
+        baseUrl : "/src/sounds/"
+    });
+    
+    sampler = instrument.toMaster() //.connect(reverb); // sound clips used by the piano
+    sampler.release.value = 1;
+}
 
 const temp_slider_func = () => {
     AI.temperature = parseFloat(TEMP_SLIDER.value);
@@ -41,6 +52,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phon
 
 
 const reset = () => {
+    instrument_change_func();
     temp_slider_func();
     step_slider_func();
     timer_slider_func();
@@ -48,7 +60,7 @@ const reset = () => {
     KEYBOARD._resize();
 }
 
-
+INSTRUMENT.onchange = instrument_change_func;
 TEMP_SLIDER.onchange = temp_slider_func;
 STEP_SLIDER.onchange = step_slider_func;
 SHOW_NOTES.onchange = show_notes_func;

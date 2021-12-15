@@ -16,6 +16,7 @@
 <script src="js/prereqs/lodash.js"></script>
 <script src="js/prereqs/StartAudioContext.js"></script>
 <script src="js/prereqs/events.js"></script>
+<script src="js/prereqs/Tonejs-Instruments.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tensorflow/1.2.8/tf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0/es6/core.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0/es6/music_rnn.js"></script>
@@ -118,6 +119,13 @@
           <div class="accordion-collapse collapse" id="collapseTwo" data-bs-parent="#offcanvas-accordion">
             <div class="accordion-body">
               <form id="settings">
+                <div class="mb-3">
+                  <label for="instrument" class="form-label">🎵 Instrument</label>
+                  <select class="form-select" id="instrument">
+                    <option value="piano" selected>Piano</option>
+                    <option value="guitar-acoustic">Guitar</option>
+                  </select>
+                </div>
                 <div class="mb-3">
                   <label for="temperature" class="form-label">🌡 Temperature</label>
                   <a tabindex="0" href="#" class="text-info text-decoration-none" role="button"
@@ -226,5 +234,4 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-dark-5@1.1.3/dist/js/darkmode.min.js"></script>
   <script src="js/darkmode.js" async defer></script>
 </body>
-<script src="js/slider/slider.js"></script>
 </html>

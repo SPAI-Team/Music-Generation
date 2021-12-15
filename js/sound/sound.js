@@ -1,7 +1,8 @@
 var selectedInstrument = document.getElementById("instrument").value;
 // passing a single instrument name loads one instrument and returns the tone.js object
 var instrument = SampleLibrary.load({
-    instruments: selectedInstrument
+    instruments: selectedInstrument,
+    baseUrl : "/src/sounds/"
 });
 
 let sampler = instrument.toMaster() //.connect(reverb); // sound clips used by the piano
