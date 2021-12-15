@@ -6,13 +6,10 @@ html {
 
 .nav-link {
   margin-right: 20px;
-  color: black;
+  color: white;
   white-space: nowrap;
 }
 
-.navbar-nav {
-  margin-top: 30px;
-}
 
 #nav {
   font-size: large;
@@ -23,14 +20,17 @@ body {
   background-position: top left, top right, 0% 60%, 100% 100%;
 } */
 
-@media only screen and (max-width: 768px) {
-  .text-white {
-    color: black !important;
-  }
-}
+
 #nav a {
-  color: black;
+color : white;
 }
+
+@media only screen and (max-width: 768px) {
+  #nav a {
+    color : black;
+    }
+}
+
 img{
   height:120px;
   width: 120px;
@@ -52,3 +52,9 @@ figure:nth-child(2){
     margin-left: 0em;
   }
 }
+
+.card:hover {
+  background-color: #6c63ff;
+  color: white;
+  transition: 0.5s;
+} 
